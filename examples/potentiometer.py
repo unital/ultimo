@@ -8,9 +8,8 @@ Pico, which has a fairly noisy onboard ADC.
 import asyncio
 from machine import ADC, Pin
 
-from ultimo.apply import pipe
+from ultimo.pipelines import pipe, Dedup
 from ultimo.core import connect
-from ultimo.dedup import Dedup
 from ultimo.poll import Poll
 
 

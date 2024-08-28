@@ -4,7 +4,7 @@
 import asyncio
 from machine import RTC
 
-from ultimo.apply import pipe
+from ultimo.pipelines import pipe
 from ultimo.core import connect
 from ultimo.poll import Poll
 from ultimo.value import Value

@@ -6,11 +6,8 @@ This example shows how to debounce a noisy digital I/O.
 import asyncio
 from machine import Pin
 
-from ultimo.apply import pipe
+from ultimo.pipelines import pipe, Debounce, Dedup, Filter
 from ultimo.core import connect
-from ultimo.debounce import Debounce
-from ultimo.dedup import Dedup
-from ultimo.filter import Filter
 from ultimo.poll import Poll
 
 @Filter

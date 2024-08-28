@@ -7,7 +7,7 @@ import asyncio
 from machine import Pin, RTC
 import time
 
-from ultimo.apply import pipe
+from ultimo.pipelines import pipe
 from ultimo.core import connect, aconnect, EventSource
 from ultimo.value import Value
 

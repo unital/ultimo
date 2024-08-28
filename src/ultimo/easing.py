@@ -1,5 +1,5 @@
-import asyncio
-import time
+import uasyncio
+import utime
 
 from .value import Value
 
@@ -14,15 +14,15 @@ class Easing(Value):
     def __init__(self, value=None, easing=linear, delay=1, rate=0.05):
         super().__init__(value)
         self.target_value = value
-        self.last_change = time.time()
+        self.last_change = utime.time()
         self.easing = easing
         self.delay = delay
         self.rate = rate
         self.easing_task = None
 
     async def ease(self):
-        while (delta := time.time() - self.last_change) <= self.delay:
-            await asyncio.sleep(self.rate)
+        while (delta := utime.time() - self.last_change) <= self.delay:
+            await uasyncio.sleep(self.rate)
             self.value = self.easing(self.initial_value, self.target_value, delta/self.delay)
             await self.fire()
 
@@ -33,7 +33,7 @@ class Easing(Value):
     async def update(self, value):
         if value != self.target_value:
             self.initial_value = value
-            self.last_change = time.time()
+            self.last_change = utime.time()
             self.target_value = value
             if self.easing_task is None:
-                self.easing_task = asyncio.create_task(self.ease())
+                self.easing_task = uasyncio.create_task(self.ease())

@@ -1,5 +1,6 @@
 from .core import EventSource
 
+
 class Value(EventSource):
     """A class which stores a varying value that can be observed."""
 

@@ -1,6 +1,7 @@
 """Core classes and helper functions for async iterators."""
 
-import asyncio
+import uasyncio
+
 
 def aiter(iterable):
     """Return an asynchronous iterator for an object."""
@@ -64,11 +65,11 @@ class EventSource(ASource):
     flow = EventFlow
 
     def __init__(self):
-        self.event = asyncio.Event()
+        self.event = uasyncio.Event()
 
     async def fire(self):
         self.event.set()
-        await asyncio.sleep(0.0)
+        await uasyncio.sleep(0.0)
         self.event.clear()
 
 

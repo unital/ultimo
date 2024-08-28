@@ -1,11 +1,11 @@
-import asyncio
+import uasyncio
 from .core import AFlow, ASource, asynchronize
 
 
 class PollFlow(AFlow):
 
     async def __anext__(self):
-        await asyncio.sleep(self.source.interval)
+        await uasyncio.sleep(self.source.interval)
         return await self.source()
 
 

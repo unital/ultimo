@@ -10,9 +10,8 @@ This shows how to use the Poll, EWMA, pipe and connect functions.
 import asyncio
 from machine import ADC
 
-from ultimo.apply import pipe
+from ultimo.pipelines import pipe, EWMA
 from ultimo.core import connect
-from ultimo.ewma import EWMA
 from ultimo.poll import Poll
 
 
