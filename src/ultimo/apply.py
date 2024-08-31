@@ -1,6 +1,0 @@
-"""Pipelines that apply functions."""
-
-
-
-
-

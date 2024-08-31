@@ -1,6 +1,7 @@
 """Core pipeline classes for common operations"""
 
-from src.ultimo.core import APipeline, APipelineFlow, asynchronize
+from ultimo.core import APipeline, APipelineFlow, asynchronize
+from ultimo.interpolate import linear
 
 
 class Apply(APipeline):
@@ -72,11 +73,6 @@ class Dedup(APipeline):
     flow = DedupFlow
 
 
-def linear(x, y, t):
-    """Linear interpolation between x and y."""
-    return t * x + (1-t) * y
-
-
 class EWMA(APipeline):
     """Pipeline that smoothes values with an exponentially weighted moving average."""
 
@@ -91,7 +87,7 @@ class EWMA(APipeline):
         if self.value is None:
             self.value = value
         else:
-            self.value = linear(value, self.value, self.weight)
+            self.value = linear(self.value, value, self.weight)
         return self.value
 
 def pipe(fn):
