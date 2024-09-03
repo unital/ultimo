@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
 """Core classes and helper functions for the Ultimo framework"""
 
 import uasyncio
@@ -19,6 +23,8 @@ class AFlow:
     async def __anext__(self):
         """Get the next value.  Subclasses must override."""
         value = await self.source()
+        if value is None:
+            raise StopAsyncIteration()
         return value
 
 
@@ -26,13 +32,11 @@ class ASource:
     """Base class for asynchronous sources."""
 
     #: The flow factory class variable used to create an iterator.
-    flow: "type[AFlow]"
-
-    def get(self):
+    flow: "type[AFlow]" = AFlow
 
     async def __call__(self):
         """Get the source's current value."""
-        raise NotImplementedError()
+        return None
 
     def __aiter__(self):
         """Return an iterator for the source."""
@@ -42,17 +46,37 @@ class ASource:
 class ASink:
     """Base class for consumers of sources."""
 
+    #: The input source for the pipeline.
+    source: "ASource | None"
+
     def __init__(self, source=None):
         self.source = source
 
-    async def __call__(self, value):
-        # default do-nothing implementation, subclases should override
+    async def __call__(self, value=None):
+        """Consume an input source value, or the entire source if no value given."""
+        if value is None and self.source is not None:
+            value = await self.source()
+        if value is not None:
+            await self._process(value)
+
+    async def _process(self, value):
+        # default implementation, subclasses should override
         pass
+
+    async def run(self):
+        """Consume the source if available."""
+        if self.source is not None:
+            try:
+                async for value in self.source:
+                    await self(value)
+            except uasyncio.CancelledError:
+                return
 
     def __ror__(self, other):
         if isinstance(other, ASource):
             self.source = other
             return self
+        return NotImplemented
 
 
 class EventFlow(AFlow):
@@ -60,8 +84,7 @@ class EventFlow(AFlow):
 
     async def __anext__(self):
         await self.source.event.wait()
-        self.source.event.clear()
-        return await self.source()
+        return super().__anext__()
 
 
 class EventSource(ASource):
@@ -69,7 +92,7 @@ class EventSource(ASource):
 
     flow = EventFlow
 
-    #: An asyncio Event which is set to wake the iterators.
+    #: An uasyncio Event which is set to wake the iterators.
     event: uasyncio.Event
 
     def __init__(self):
@@ -78,8 +101,17 @@ class EventSource(ASource):
     async def fire(self):
         """Set the async event to wake iterators."""
         self.event.set()
-        await uasyncio.sleep(0.0)
         self.event.clear()
+
+
+class ThreadSafeSource(EventSource):
+    """Base class for interrupt-driven sources."""
+
+    #: An uasyncio ThreadSafeFlag which is set to wake the iterators.
+    event: uasyncio.ThreadSafeFlag
+
+    def __init__(self):
+        self.event = uasyncio.ThreadSafeFlag()
 
 
 class APipelineFlow(AFlow):
@@ -96,6 +128,8 @@ class APipelineFlow(AFlow):
         async for source_value in self.flow:
             if (value := await self.source(source_value)) is not None:
                 return value
+        else:
+            raise StopAsyncIteration()
 
 
 class APipeline(ASource, ASink):
@@ -104,27 +138,18 @@ class APipeline(ASource, ASink):
     #: The flow factory class variable used to create an iterator.
     flow: "type[APipelineFlow]" = APipelineFlow
 
-    #: The input source for the pipeline.
-    source: "ASource | None"
-
-    def __init__(self, source: "ASource | None" = None):
-        self.source = source
-
     async def __call__(self, value=None):
-        """Get the source's current value, or transform an input source value."""
+        """Transform an input source value."""
         # default do-nothing implementation, subclases may override
-        if value is None:
+        if value is None and self.source is not None:
             value = await self.source()
 
+        if value is not None:
+            return await self._process(value)
+
+    async def _process(self, value):
         return value
 
-    def __ror__(self, other):
-        if isinstance(other, ASource):
-            self.source = other
-            return self
-        return NotImplemented
-
-_Generator = type(anext)
 
 def aiter(iterable):
     """Return an asynchronous iterator for an object."""
@@ -137,10 +162,7 @@ async def anext(iterator):
 
 
 def asynchronize(f):
-    """Ensure callable is asynchronous."""
-
-    if isinstance(f, _Generator):
-        return f
+    """Make a synchronous callback synchronouse."""
 
     async def af(*args, **kwargs):
         return f(*args, **kwargs)
@@ -159,7 +181,10 @@ async def connect(source, sink):
 
 async def aconnect(source, sink):
     """Connect a sink to consume a source."""
-    value = await source()
-    await sink(value)
-    async for value in source:
+    try:
+        value = await source()
         await sink(value)
+        async for value in source:
+            await sink(value)
+    except uasyncio.CancelledError:
+        return

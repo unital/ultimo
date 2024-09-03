@@ -1,4 +1,10 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
 """Core pipeline classes for common operations"""
+
+import utime
 
 from ultimo.core import APipeline, APipelineFlow, asynchronize
 from ultimo.interpolate import linear
@@ -44,7 +50,10 @@ class Debounce(APipeline):
         self.value = None
 
     async def __call__(self, value=None):
-        if self.last_change is None or utime.ticks_diff(utime.ticks_ms(), self.last_change) > self.delay:
+        if (
+            self.last_change is None
+            or utime.ticks_diff(utime.ticks_ms(), self.last_change) > self.delay
+        ):
             if value is None:
                 value = await self.source()
             self.value = value
@@ -59,12 +68,14 @@ class DedupFlow(APipelineFlow):
         self.value = None
 
     async def __anext__(self):
-        async for value in self.flow:
-            if self.value != value:
-                break
+        async for source_value in self.flow:
+            if (value := await self.source(source_value)) is not None:
+                if value is not None and self.value != value:
+                    self.value = value
+                    return value
+        else:
+            raise StopAsyncIteration()
 
-        self.value = value
-        return value
 
 
 class Dedup(APipeline):
@@ -89,6 +100,7 @@ class EWMA(APipeline):
         else:
             self.value = linear(self.value, value, self.weight)
         return self.value
+
 
 def pipe(fn):
 

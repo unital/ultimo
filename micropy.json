@@ -2,12 +2,13 @@
     "name": "ultimo",
     "stubs": {
         "micropython-stdlib-stubs": "1.1.2",
-        "micropython-rp2-stubs": "1.20.0.post5"
+        "micropython-rp2-stubs": "1.19.1.post14"
     },
     "dev-packages": {
         "micropy-cli": "*",
         "sphinx": "*",
-        "pydata-sphinx-theme": "*"
+        "pydata-sphinx-theme": "*",
+        "unittest": "*"
     },
     "packages": {},
     "config": {

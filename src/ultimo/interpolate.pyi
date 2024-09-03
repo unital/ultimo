@@ -4,7 +4,10 @@
 
 """Utility interpolation functions"""
 
+from typing import TypeVar, SupportsFloat
 
-def linear(x, y, t):
+value = TypeVar("value")
+
+
+def linear(x: value, y: value, t: SupportsFloat) -> value:
     """Linear interpolation between x and y."""
-    return (1 - t) * x + t * y

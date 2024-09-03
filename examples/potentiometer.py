@@ -5,7 +5,7 @@ clean sequence of values.  This was written for the Raspberry Pi
 Pico, which has a fairly noisy onboard ADC.
 """
 
-import asyncio
+import uasyncio
 from machine import ADC, Pin
 
 from ultimo.pipelines import pipe, Dedup
@@ -23,10 +23,10 @@ async def main(pin):
     """Poll values from a potentiometer and print values as they change."""
     potentiometer = ADC(pin)
     level = PollADC(potentiometer, 0.1) | u16_to_u8() | Dedup()
-    task = asyncio.create_task(connect(level, print))
-    await asyncio.gather(task)
+    task = uasyncio.create_task(connect(level, print))
+    await uasyncio.gather(task)
 
 
 if __name__ == '__main__':
     # run forever
-    asyncio.run(main(Pin(26)))
+    uasyncio.run(main(Pin(26)))

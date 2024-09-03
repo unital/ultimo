@@ -1,7 +1,7 @@
 """ Clock Example
 """
 
-import asyncio
+import uasyncio
 from machine import RTC
 
 from ultimo.pipelines import pipe
@@ -25,14 +25,14 @@ async def main():
     """Poll values from the temperature sensor and print values as they change."""
     rtc = Poll(RTC().datetime, 0.1)
     clock = Value(await rtc())
-    task_1 = asyncio.create_task(connect(rtc, clock))
-    task_2 = asyncio.create_task(connect(clock | hour(), print))
-    task_3 = asyncio.create_task(connect(clock | minute(), print))
-    task_4 = asyncio.create_task(connect(clock | second(), print))
-    await asyncio.gather(task_1, task_2, task_3, task_4)
+    task_1 = uasyncio.create_task(connect(rtc, clock))
+    task_2 = uasyncio.create_task(connect(clock | hour(), print))
+    task_3 = uasyncio.create_task(connect(clock | minute(), print))
+    task_4 = uasyncio.create_task(connect(clock | second(), print))
+    await uasyncio.gather(task_1, task_2, task_3, task_4)
 
 
 if __name__ == '__main__':
     # run forever
-    asyncio.run(main())
+    uasyncio.run(main())
 
