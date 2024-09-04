@@ -31,8 +31,8 @@ a ``main`` function::
 
     async def main():
         led, lcd, adc, clock = initialize()
-        brightness_task = asyncio.Task(control_brightness(led, adc))
-        display_task = asyncio.Task(display_time(lcd, clock))
+        brightness_task = asyncio.create_task(control_brightness(led, adc))
+        display_task = asyncio.create_task(display_time(lcd, clock))
         # run forever
         await asyncio.gather(brightness_task, display_task)
 
@@ -48,19 +48,27 @@ example, the clock only needs to poll the time occasionally (since it is only
 displaying hours and minutes) while the potentiometer needs to be checked
 frequently if it is to be responsive to user interactions.
 
-Iterator API
-------------
+ASource Classes
+---------------
 
-Ultimo provides a slightly richer API for its iterator objects.  In addition
-to being used in ``async for ...`` similar iterator contexts, the iterator
-objects can be called to generate an immediate value (eg. by querying the
-underlying hardware, or returning a cached value).
+Ultimo provides a slightly richer API for its iteratable objects.  In addition
+to being used in ``async for ...`` similar iterator contexts, the iteratable
+objects can be asynchronously called to generate an immediate value (eg. by
+querying the underlying hardware, or returning a cached value).  This protocol
+is embodied in the :py:class:`ASource` base class.
 
-Polling
--------
+The corresponding iterator objects are subclasses of :py:class:`AFlow` and
+by default each :py:class:`ASource` has a particular :py:class:`AFlow` subclass
+that it creates when iterating.
 
-The simplest way to create an interator is by polling a callable at an
-interval, for example::
+Ultimo has a number of builtin :py:class:`ASource` subclasses that handle common
+cases.
+
+Poll
+~~~~
+
+The simplest way to create a source is by polling a callable at an interval.
+The :py:class:`Poll` class does this.  For example::
 
     from machine import RTC
 
@@ -75,28 +83,71 @@ or::
     adc = Poll(_adc.read_16, interval=0.01)
 
 The Poll object expects the callable to be called with no arguments, so more
-complex signatures may need to be wrapped in a helper function, partial or
-callable class, as appropriate.  The callable should be a regular synchronous
-function which should ideally avoid setting any shared state (or carefully
-use locks if it must).
+complex function signatures may need to be wrapped in a helper function,
+partial or callable class, as appropriate.  The callable can be a regular
+synchronous function or asyncrhonous coroutine, which should ideally avoid
+setting any shared state (or carefully use locks if it must).
 
 Poll objects can also be called, which simply invokes to the underlying
 callable.
 
-The library includes factory functions for common poll-based data sources.
+EventSource
+~~~~~~~~~~~
 
-Interrupts
-----------
+The alternative to polling is to wait for an asynchronous event.  The
+:py:class:`EventSource` asbtract class provides the basic infrastructure for
+users to subclass by providing an appropriate :py:meth:`__call__` method.
 
-The other common way of getting data is via interrupts.  While there is no
-helper for creating interrupt-based iterators, the basic idea is to create
-an ``asyncio.ThreadSafeFlag``, set that in the interrupt handler, and then
-have the iterator ``await`` the flag, perform any processing, and then reset
-the flag.
+The event that the iterator waits for can be either an :py:class:`asyncio.Event`
+set by regular Python code calling the :py:meth:`fire` method, or an
+:py:class:`asyncio.ThreadSafeFlag` which can (carefully!) be set in an interrupt
+handler.
+
+For example, the following class provides a class for handling IRQs from a Pin::
+
+    class Interrupt(EventSource):
+
+        def __init__(self, pin, trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING):
+            self.event = asyncio.ThreadSafeFlag()
+            self.pin = pin
+            self.trigger = trigger
+
+        async def __aenter__(self):
+            set_flag = self.event.set
+
+            def isr(_):
+                set_flag()
+
+            self.pin.irq(isr, self.trigger)
+
+            return self
+
+        async def __aexit__(self, *args, **kwargs):
+            await self.close()
+            return False
+
+        async def __call__(self):
+            return self.pin()
+
+        async def close(self):
+            self.pin.irq()
 
 As with all interrupt-based code in micropython, care needs to be taken in
 the interrupt handler and the iterator method so that the code is fast,
 robust and reentrant.
+
+Values and Easings
+~~~~~~~~~~~~~~~~~~
+
+A :py:class:`Value` is an :py:class`EventSource` which holds a value as state
+and fires an event every time the value is updated (either by calling the
+instance with the new value, or calling the :py:meth:`update` method).
+Iterating over a :py:class:`Value` asynchronously generates the values as they
+are changed.
+
+An :py:class:`Easing` is a value which when set is transitioned into its new
+value over time by an easing formula.  The intermediate values will be emitted
+by the iterator.
 
 Pipelines
 ---------
@@ -104,7 +155,18 @@ Pipelines
 Often you want to do some further processing on the raw output from a device.
 For example, you may want to convert the data into a more useful format,
 smooth a noisy signal, debounce a button press, or de-duplicate a repetitive
-iterator.
+iterator.  Ultimo provides the :py:class:`APipeline` base class for sources
+which transform another source.
+
+These include:
+
+- :py:class:`Apply` - apply a function to each value
+- :py:class:`Filter` - filter values using a function, discarding ``False`` values
+- :py:class:`EWMA` - smooth values using an exponentially-weighted moving average
+- :py:class:`Dedup` - discard sequential duplicated values
+- :py:class:`Debounce` - let a source settle before resuming outputs
+-
+
 
 For example, a raw ADC output could be converted to a voltage as follows::
 
@@ -191,8 +253,8 @@ an interrupt::
         async for _ in button:
             state = not state
             if state:
-                brightness_task = Task(connect(led.brightness, dedup(brightness(adc(19)))))
-                time_task = Task(display_bytes(format(dedup(hours_minutes(poll_rtc(1.0))))
+                brightness_task = create_task(connect(led.brightness, dedup(brightness(adc(19)))))
+                time_task = create_task(display_bytes(format(dedup(hours_minutes(poll_rtc(1.0))))
             else:
                 brightness_task.cancel()
                 time_task.cancel()
@@ -204,3 +266,14 @@ an interrupt::
 
     if __name__ == '__main__':
         run(main())
+
+What Ultimo Isn't
+-----------------
+
+Ultimo isn't intended for strongly constrained real-time applications, since
+:py:mod:`asyncio` is cooperative multitasking and gives no guarantees about
+how frequently a coroutine will be called.
+
+The design goal of Ultimo was to make it easier to support user interactions,
+so it may not be a good fit for applications which are purely for hardware
+automation.

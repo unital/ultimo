@@ -1,0 +1,4 @@
+micropy-cli
+pydata-sphinx-theme
+sphinx
+unittest

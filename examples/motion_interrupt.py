@@ -1,21 +1,21 @@
 """Motion Sensor Interrupt Example
 
-This example shows how to use an IRQ to feed a source.
+This example shows how to use an IRQ to feed a ThreadSafeSource source, the
+Hold source, how to connect to a value's sink,  and using the consumer
+decorator.
 """
 
-import asyncio
+import uasyncio
 from machine import Pin, RTC
-import time
 
-from ultimo.apply import pipe
-from ultimo.core import connect, aconnect, EventSource
-from ultimo.value import Value
+from ultimo.core import ThreadSafeSource, consumer
+from ultimo.value import Hold
 
 
-class Interrupt(EventSource):
+class IRQInterrupt(ThreadSafeSource):
 
     def __init__(self, pin, trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING):
-        self.event = asyncio.ThreadSafeFlag()
+        super().__init__()
         self.pin = pin
         self.trigger = trigger
 
@@ -40,45 +40,22 @@ class Interrupt(EventSource):
         self.pin.irq()
 
 
-class DelayedShutoff(Value):
-
-    def __init__(self, value=0, shutoff_delay=60):
-        super().__init__(value)
-        self.shutoff_delay = shutoff_delay
-        self.last_change = time.time()
-        self.delay_task = None
-
-    async def delay_shutoff(self):
-        while (delta := time.time() - self.last_change) <= self.shutoff_delay:
-            await asyncio.sleep(delta)
-
-        self.value = 0
-        await self.fire()
-
-    async def update(self, value):
-        self.last_change = time.time()
-        if value == 1 and self.value == 0:
-            self.value = value
-            self.delay_task = asyncio.create_task(self.delay_shutoff())
-            await self.fire()
-
-
+@consumer
 def report(value):
     print(value, RTC().datetime())
 
+
 async def main(pin):
     """Wait for a motion sensor to trigger and print output."""
-    async with Interrupt(pin) as motion:
-        delay = DelayedShutoff()
-        task_1 = asyncio.create_task(aconnect(motion, delay))
-        task_2 = asyncio.create_task(connect(delay, report))
-        await asyncio.gather(task_1, task_2)
+    async with IRQInterrupt(pin) as motion_pin:
+        activity = Hold(0)
+        update_activity = motion_pin | activity.sink()
+        report_activity = activity | report()
+        update_task = uasyncio.create_task(update_activity.run())
+        report_task = uasyncio.create_task(report_activity.run())
+        await uasyncio.gather(update_task, report_task)
 
 
 if __name__ == '__main__':
     # run forever
-    asyncio.run(main(Pin(22, Pin.IN, Pin.PULL_DOWN)))
-
-
-
-
+    uasyncio.run(main(Pin(22, Pin.IN, Pin.PULL_DOWN)))

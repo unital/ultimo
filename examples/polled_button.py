@@ -3,14 +3,11 @@
 This example shows how to debounce a noisy digital I/O.
 """
 
-import asyncio
+import uasyncio
 from machine import Pin
 
-from ultimo.apply import pipe
-from ultimo.core import connect
-from ultimo.debounce import Debounce
-from ultimo.dedup import Dedup
-from ultimo.filter import Filter
+from ultimo.pipelines import pipe, Debounce, Dedup, Filter
+from ultimo.core import connect, asynchronize
 from ultimo.poll import Poll
 
 @Filter
@@ -22,12 +19,13 @@ def button_pressed(value):
 
 async def main(pin):
     """Poll values from a button and send an event when the button is pressed."""
-    level = Poll(pin, 0.1) | Debounce() | Dedup() | button_pressed
-    task = asyncio.create_task(connect(level, print))
-    await asyncio.gather(task)
+    pin_source = Poll(asynchronize(pin), 0.1)
+    level = pin_source | Debounce() | Dedup() | button_pressed
+    task = uasyncio.create_task(connect(level, print))
+    await uasyncio.gather(task)
 
 
 if __name__ == '__main__':
     # run forever
-    asyncio.run(main(Pin(19, Pin.IN, Pin.PULL_UP)))
+    uasyncio.run(main(Pin(19, Pin.IN, Pin.PULL_UP)))
 
