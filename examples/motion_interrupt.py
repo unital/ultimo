@@ -1,21 +1,21 @@
 """Motion Sensor Interrupt Example
 
-This example shows how to use an IRQ to feed a source.
+This example shows how to use an IRQ to feed a ThreadSafeSource source, the
+Hold source, how to connect to a value's sink,  and using the consumer
+decorator.
 """
 
 import uasyncio
 from machine import Pin, RTC
-import time
 
-from ultimo.pipelines import pipe
-from ultimo.core import connect, aconnect, EventSource
+from ultimo.core import ThreadSafeSource, consumer
 from ultimo.value import Hold
 
 
-class Interrupt(EventSource):
+class IRQInterrupt(ThreadSafeSource):
 
     def __init__(self, pin, trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING):
-        self.event = uasyncio.ThreadSafeFlag()
+        super().__init__()
         self.pin = pin
         self.trigger = trigger
 
@@ -40,22 +40,22 @@ class Interrupt(EventSource):
         self.pin.irq()
 
 
+@consumer
 def report(value):
     print(value, RTC().datetime())
 
+
 async def main(pin):
     """Wait for a motion sensor to trigger and print output."""
-    async with Interrupt(pin) as motion:
-        delay = Hold(0)
-        task_1 = uasyncio.create_task(aconnect(motion, delay))
-        task_2 = uasyncio.create_task(connect(delay, report))
-        await uasyncio.gather(task_1, task_2)
+    async with IRQInterrupt(pin) as motion_pin:
+        activity = Hold(0)
+        update_activity = motion_pin | activity.sink()
+        report_activity = activity | report()
+        update_task = uasyncio.create_task(update_activity.run())
+        report_task = uasyncio.create_task(report_activity.run())
+        await uasyncio.gather(update_task, report_task)
 
 
 if __name__ == '__main__':
     # run forever
     uasyncio.run(main(Pin(22, Pin.IN, Pin.PULL_DOWN)))
-
-
-
-

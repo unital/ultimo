@@ -13,16 +13,14 @@ from ultimo.interpolate import linear
 class Apply(APipeline):
     """Pipeline that applies a callable to each value."""
 
-    def __init__(self, fn, args=(), kwargs={}, source=None):
+    def __init__(self, coroutine, args=(), kwargs={}, source=None):
         super().__init__(source)
-        self.coroutine = asynchronize(fn)
+        self.coroutine = coroutine
         self.args = args
         self.kwargs = kwargs
 
-    async def __call__(self, value=None):
-        value = await super().__call__(value)
-        if value is not None:
-            return await self.coroutine(value, *self.args, **self.kwargs)
+    async def process(self, value):
+        return await self.coroutine(value, *self.args, **self.kwargs)
 
 
 class Filter(APipeline):
@@ -30,10 +28,9 @@ class Filter(APipeline):
 
     def __init__(self, filter, source=None):
         super().__init__(source)
-        self.filter = asynchronize(filter)
+        self.filter = filter
 
-    async def __call__(self, value=None):
-        value = await super().__call__(value)
+    async def process(self, value):
         if await self.filter(value):
             return value
         else:
@@ -41,7 +38,7 @@ class Filter(APipeline):
 
 
 class Debounce(APipeline):
-    """Pipeline that stabilizes values emitted during a delay."""
+    """Pipeline that stabilizes polled values emitted for a short time."""
 
     def __init__(self, delay=0.01, source=None):
         super().__init__(source)
@@ -54,9 +51,7 @@ class Debounce(APipeline):
             self.last_change is None
             or utime.ticks_diff(utime.ticks_ms(), self.last_change) > self.delay
         ):
-            if value is None:
-                value = await self.source()
-            self.value = value
+            self.value = await super().__call__(value)
             self.last_change = utime.ticks_ms()
 
         return self.value
@@ -102,9 +97,25 @@ class EWMA(APipeline):
         return self.value
 
 
+def apipe(afn):
+
+    def apply_factory(*args, **kwargs):
+        return Apply(afn, args, kwargs)
+
+    return apply_factory
+
+
 def pipe(fn):
+    return apipe(asynchronize(fn))
 
-    def decorator(*args, **kwargs):
-        return Apply(fn, args, kwargs)
 
-    return decorator
+def afilter(afn):
+
+    def filter_factory(*args, **kwargs):
+        return Filter(afn, args, kwargs)
+
+    return filter_factory
+
+
+def filter(fn):
+    return afilter(asynchronize(fn))

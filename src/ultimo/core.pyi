@@ -9,10 +9,12 @@ from typing import (
     Any,
     AsyncIterator,
     Callable,
+    Concatenate,
     Coroutine,
     Generic,
     ParamSpec,
     Self,
+    TypeAlias,
     TypeVar,
     overload
 )
@@ -22,8 +24,6 @@ import uasyncio
 Returned = TypeVar("Returned")
 Consumed = TypeVar("Consumed")
 P = ParamSpec("P")
-Func = Callable[P, Returned]
-Async = Callable[P, Coroutine[Any, Any, Returned]]
 
 class AFlow(Generic[Returned]):
     """Base class for iterators over sources."""
@@ -66,6 +66,20 @@ class ASink(Generic[Consumed]):
         """Consume the enitre source if available."""
 
     def __ror__(self, other: ASource[Consumed]) -> Self: ...
+
+
+class Consumer(ASink[Consumed]):
+    """A sink that wraps an asynchronous coroutine."""
+
+    def __init__(
+            self,
+            consumer: Callable[Concatenate[Consumed, P], None],
+            args: tuple[Any] = (),
+            kwargs: dict[str, Any] = {},
+            source: ASource | None = None,
+        ): ...
+
+    async def process(self, value: Consumed) -> None: ...
 
 class EventFlow(AFlow[Returned]):
     """Flow which awaits an Event and then gets the source value."""
@@ -129,3 +143,12 @@ async def aconnect(
     await sink(value)
     async for value in source:
         await sink(value)
+
+def asink(afn: Callable[Concatenate[Consumed, P]]) -> Callable[P, Consumer[Consumed]]:
+    """Turn an asynchronous function into a sink."""
+
+    return aconsumer_factory
+
+def sink(fn: Callable[Concatenate[Consumed, P]]) -> Callable[P, Consumer[Consumed]]:
+    """Turn a synchronous function into a sink."""
+    return asink(asynchronize(fn))

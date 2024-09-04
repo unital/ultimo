@@ -7,11 +7,11 @@
 import uasyncio
 import utime
 
-from .core import EventSource, ASink
+from .core import EventSource, asink
 from .interpolate import linear
 
 
-class Value(EventSource, ASink):
+class Value(EventSource):
     """A source which stores a varying value that can be observed.
 
     Note that iterators on a value will emit the value at the time when it
@@ -34,20 +34,14 @@ class Value(EventSource, ASink):
             await self.update(value)
         return self.value
 
+    @asink
+    async def sink(self, value=None):
+        """Sink creator that updates the value from another source."""
+        await self(value)
+
 
 class EasedValue(Value):
     """A Value that gradually changes to a target when updated."""
-
-    #: The time taken to perform the easing.
-    delay: float
-
-    #: The time between easing updates in seconds.
-    rate: float
-
-    #: A callback to compute the value at a particular moment.
-    easing: "Callable[[Any, Any, float], Any]"
-
-    #: The update rate in seconds
 
     def __init__(self, value=None, easing=linear, delay=1, rate=0.05):
         super().__init__(value)

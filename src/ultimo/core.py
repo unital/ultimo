@@ -53,13 +53,13 @@ class ASink:
         self.source = source
 
     async def __call__(self, value=None):
-        """Consume an input source value, or the entire source if no value given."""
+        """Consume an input source value."""
         if value is None and self.source is not None:
             value = await self.source()
         if value is not None:
-            await self._process(value)
+            return await self.process(value)
 
-    async def _process(self, value):
+    async def process(self, value):
         # default implementation, subclasses should override
         pass
 
@@ -77,6 +77,19 @@ class ASink:
             self.source = other
             return self
         return NotImplemented
+
+
+class Consumer(ASink):
+    """A sink that wraps an asynchronous coroutine."""
+
+    def __init__(self, consumer, args=(), kwargs={}, source=None):
+        super().__init__(source)
+        self.consumer = consumer
+        self.args = args
+        self.kwargs = kwargs
+
+    async def process(self, value):
+        return await self.consumer(value, *self.args, **self.kwargs)
 
 
 class EventFlow(AFlow):
@@ -145,9 +158,9 @@ class APipeline(ASource, ASink):
             value = await self.source()
 
         if value is not None:
-            return await self._process(value)
+            return await self.process(value)
 
-    async def _process(self, value):
+    async def process(self, value):
         return value
 
 
@@ -157,7 +170,7 @@ def aiter(iterable):
 
 
 async def anext(iterator):
-    """Return the net item from an asynchronous iterator."""
+    """Return the next item from an asynchronous iterator."""
     return await iterator.__anext__()
 
 
@@ -188,3 +201,15 @@ async def aconnect(source, sink):
             await sink(value)
     except uasyncio.CancelledError:
         return
+
+def asink(afn):
+    """Turn an asynchronous function into a sink."""
+
+    def aconsumer_factory(*args, **kwargs):
+        return Consumer(afn, args, kwargs)
+
+    return aconsumer_factory
+
+def sink(fn):
+    """Turn a synchronous function into a sink."""
+    return asink(asynchronize(fn))

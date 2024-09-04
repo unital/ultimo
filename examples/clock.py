@@ -25,11 +25,12 @@ async def main():
     """Poll values from the temperature sensor and print values as they change."""
     rtc = Poll(RTC().datetime, 0.1)
     clock = Value(await rtc())
-    task_1 = uasyncio.create_task(connect(rtc, clock))
-    task_2 = uasyncio.create_task(connect(clock | hour(), print))
-    task_3 = uasyncio.create_task(connect(clock | minute(), print))
-    task_4 = uasyncio.create_task(connect(clock | second(), print))
-    await uasyncio.gather(task_1, task_2, task_3, task_4)
+    clock_sink = rtc | clock.sink()
+    update_clock = uasyncio.create_task(clock_sink.run())
+    print_hours = uasyncio.create_task(connect(clock | hour(), print))
+    print_minutes = uasyncio.create_task(connect(clock | minute(), print))
+    print_seconds = uasyncio.create_task(connect(clock | second(), print))
+    await uasyncio.gather(update_clock, print_hours, print_minutes, print_seconds)
 
 
 if __name__ == '__main__':
