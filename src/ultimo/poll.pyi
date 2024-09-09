@@ -2,32 +2,30 @@
 #
 # SPDX-License-Identifier: MIT
 
-from typing import Any, Callable, Coroutine, Generic, TypeVar
+from typing import Any, Callable, Coroutine
 
 from .core import AFlow, ASource, Returned, asynchronize
 
-class PollFlow(AFlow, Generic[Returned]):
+class PollFlow(AFlow[Returned]):
 
     source: "Poll"
 
     def __init__(self, source: "Poll") -> None: ...
     async def __anext__(self) -> Returned: ...
 
-class Poll(Generic[Returned]):
+class Poll(ASource[Returned]):
 
     flow: type[AFlow] = PollFlow
 
     interval: float
 
-    callback: Coroutine[Any, Any, Returned]
+    callback: Callable[[], Coroutine[Any, Any, Returned]]
 
     def __init__(
         self,
-        callback: Callable[[], Returned] | Coroutine[Any, Any, Returned],
+        callback: Callable[[], Coroutine[Any, Any, Returned]],
         interval: float,
     ) -> None: ...
-    def __call__(self) -> Returned: ...
-    def __ainit__(self) -> PollFlow[Returned]: ...
 
 def poll(
     callback: Callable[[], Returned]

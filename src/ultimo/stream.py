@@ -46,5 +46,20 @@ class ARead(ASource, StreamMixin):
     async def __call__(self):
         value = await self.stream.read(1)
         if value == "":
+            # Stop iteration
+            return None
+        return value
+
+
+class AReadline(ASource, StreamMixin):
+    """Read from a text stream asynchronously one line at a time."""
+
+    def __init__(self, stream=sys.stdin):
+        self.stream = uasyncio.StreamReader(stream)
+
+    async def __call__(self):
+        value = await self.stream.readline()
+        if value == "":
+            # Stop iteration
             return None
         return value
