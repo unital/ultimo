@@ -4,7 +4,8 @@ This example shows how to smooth data from a source to produce a
 clean sequence of values.  This was written for the Raspberry Pi
 Pico's onboard temperature sensor.
 
-This shows how to use the Poll, EWMA, pipe and connect functions.
+This shows how to use the Poll, EWMA, the pipe decorator, and the
+stream writer.
 """
 
 import uasyncio

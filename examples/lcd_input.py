@@ -25,15 +25,37 @@ from devices.lcd1602 import LCD1602_RGB
 from devices.hd44780_text_device import HD44780TextDevice
 
 
-async def display_line(display, text, line=1):
+async def display_line(display, text, cursor, line=1):
     """Display a single line."""
+    if cursor < 8 or len(text) < 16:
+        text = text[:16]
+        cursor = cursor
+    elif cursor > len(text) - 8:
+        cursor = cursor - len(text) + 16
+        text = text[-16:]
+    else:
+        text = text[cursor-8:cursor+ 8]
+        cursor = 8
     await display.display_at(f"{text:<16s}", (0, line))
+    await display.set_cursor((cursor, line))
+
+
+async def handle_escape(input):
+    """Very simplistic handler to catch ANSI cursor commands."""
+    escape = ""
+    async for char in input:
+        escape += char
+        if len(escape) == 2:
+            return escape
 
 
 async def display_lines(input, display):
     """Display result line and editing line in a display."""
-    last_line = ""
+    last_line = "Python:"
     current_line = ""
+    cursor = 0
+    await display_line(display, last_line, 0, 0)
+    await display_line(display, current_line, cursor, 1)
     async for char in input:
         if char == '\n':
             try:
@@ -41,16 +63,38 @@ async def display_lines(input, display):
             except Exception as exc:
                 last_line = str(exc)
             current_line = ""
-            await display_line(display, last_line[:16], 0)
-        elif ord(char) == 127:
+            cursor = 0
+            await display_line(display, last_line, 0, 0)
+        elif ord(char) == 0x1b:
+            # escape sequence
+            print("escape")
+            escape = await handle_escape(input)
+            print(escape)
+            if escape == "[D":
+                # cursor back
+                if cursor > 0:
+                    cursor -= 1
+            elif escape == "[C":
+                # cursor forward
+                if cursor < len(current_line):
+                    cursor += 1
+        elif ord(char) == 0x7e:
+            # forward delete
+            if cursor < len(current_line):
+                current_line = current_line[:cursor] + current_line[cursor+1:]
+        elif ord(char) == 0x7f:
             # backspace
-            current_line = current_line[:-1]
-        elif ord(char) == 8:
+            if cursor > 0:
+                current_line = current_line[:cursor-1] + current_line[cursor:]
+                cursor -= 1
+        elif ord(char) == 0x08:
             # tab
             current_line = current_line + " " * 4
+            cursor += 4
         else:
-            current_line += char
-        await display_line(display, ("> " + current_line)[-16:], 1)
+            current_line = current_line[:cursor] + char + current_line[cursor:]
+            cursor += 1
+        await display_line(display, current_line, cursor, 1)
 
 
 async def main(i2c):
@@ -60,7 +104,7 @@ async def main(i2c):
     await rgb1602.ainit()
     rgb1602.led_white()
     rgb1602.lcd.display_on = True
-    rgb1602.lcd.cursor_on = True
+    rgb1602.lcd.blink_on = True
 
     text_device = HD44780TextDevice(rgb1602.lcd)
     input = ARead()
