@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""A framework for asynchronous interfaces in Micropython."""
+"""Ultimo sources and sinks for basic microcontroller hardware."""

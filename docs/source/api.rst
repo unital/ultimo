@@ -7,4 +7,6 @@ API
     :recursive:
 
     ultimo
+    ultimo_machine
+    ultimo_display
 

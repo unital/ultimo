@@ -7,7 +7,7 @@
 import uasyncio
 import utime
 
-from .core import EventSource, asink
+from .core import ASource, EventSource, Consumer
 from .interpolate import linear
 
 
@@ -34,10 +34,14 @@ class Value(EventSource):
             await self.update(value)
         return self.value
 
-    @asink
-    async def sink(self, value=None):
+    def sink(self, source):
         """Sink creator that updates the value from another source."""
-        await self(value)
+        return Consumer(self.update, source=source)
+
+    def __ror__(self, other):
+        if isinstance(other, ASource):
+            return self.sink(other)
+        return NotImplemented
 
 
 class EasedValue(Value):

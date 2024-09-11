@@ -45,5 +45,6 @@ autodoc_mock_imports = [
     'machine',
     'uasyncio',
     'utime',
+    'framebuf',
 ]
 autosummary_generate = True

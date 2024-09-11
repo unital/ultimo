@@ -21,8 +21,8 @@ from typing import (
 
 import uasyncio
 
-Returned = TypeVar("Returned")
-Consumed = TypeVar("Consumed")
+Returned = TypeVar("Returned", covariant=True)
+Consumed = TypeVar("Consumed", contravariant=True)
 P = ParamSpec("P")
 
 class AFlow(Generic[Returned]):
@@ -62,10 +62,13 @@ class ASink(Generic[Consumed]):
     async def _consume(self, value: Consumed) -> Any:
         """Consume an input source value."""
 
-    async def run(self):
+    async def run(self) -> None:
         """Consume the enitre source if available."""
 
-    def __ror__(self, other: ASource[Consumed]) -> Self: ...
+    def create_task(self) -> uasyncio.Task:
+        """Create a task that consumes the source."""
+
+    def __ror__(self, other: ASource[Consumed]) -> ASink[Consumed]: ...
 
 
 class Consumer(ASink[Consumed]):
@@ -73,8 +76,8 @@ class Consumer(ASink[Consumed]):
 
     def __init__(
             self,
-            consumer: Callable[Concatenate[Consumed, P], None],
-            args: tuple[Any] = (),
+            consumer: Callable[Concatenate[Consumed, P], Coroutine[Any, Any, None]],
+            args: tuple[Any, ...] = (),
             kwargs: dict[str, Any] = {},
             source: ASource | None = None,
         ): ...
@@ -85,7 +88,7 @@ class EventFlow(AFlow[Returned]):
     """Flow which awaits an Event and then gets the source value."""
 
     #: The source that created the flow.
-    source: "EventSource[Returned]"
+    source: "EventSource[Returned] | ThreadSafeSource[Returned]"
 
 class EventSource(ASource[Returned]):
     """Base class for event-driven sources."""
@@ -97,6 +100,12 @@ class EventSource(ASource[Returned]):
 
     async def fire(self):
         """Set the async event to wake iterators."""
+
+class ThreadSafeSource(EventSource[Returned]):
+    """Base class for event-driven sources."""
+
+    #: An uasyncio ThreadSafeSource which is set to wake the iterators.
+    event: uasyncio.ThreadSafeSource
 
 class APipelineFlow(AFlow[Returned], Generic[Returned, Consumed]):
     """Base class for iterators over pipeline sources."""
@@ -119,7 +128,7 @@ class APipeline(ASource[Returned], ASink[Consumed]):
     async def __call__(self, value: Consumed | None = None) -> Returned:
         """Get the source's current value, or transform an input source value."""
 
-    def __ror__(self, other: ASource[Consumed]) -> Self: ...
+    def __ror__(self, other: ASource[Consumed]) -> APipeline[Returned, Consumed]: ...
 
 def aiter(iterable) -> AsyncIterator:
     """Return an asynchronous iterator for an object."""
@@ -129,7 +138,7 @@ async def anext(iterator: AsyncIterator[Returned]) -> Returned:
     """Return the net item from an asynchronous iterator."""
     return await iterator.__anext__()
 
-def asynchronize(f: Func | Async) -> Async:
+def asynchronize(f: Callable[P, Returned]) -> Callable[P, Coroutine[None, None, Returned]]:
     """Ensure callable is asynchronous."""
 
 async def connect(source: ASource[Returned], sink: Callable[[Returned], Any]):
@@ -144,11 +153,8 @@ async def aconnect(
     async for value in source:
         await sink(value)
 
-def asink(afn: Callable[Concatenate[Consumed, P]]) -> Callable[P, Consumer[Consumed]]:
+def asink(afn: Callable[Concatenate[Consumed, P], Coroutine[Any, Any, None]]) -> Callable[P, Consumer[Consumed]]:
     """Turn an asynchronous function into a sink."""
 
-    return aconsumer_factory
-
-def sink(fn: Callable[Concatenate[Consumed, P]]) -> Callable[P, Consumer[Consumed]]:
+def sink(fn: Callable[Concatenate[Consumed, P], None]) -> Callable[P, Consumer[Consumed]]:
     """Turn a synchronous function into a sink."""
-    return asink(asynchronize(fn))

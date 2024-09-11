@@ -8,7 +8,9 @@
         "micropy-cli": "*",
         "sphinx": "*",
         "pydata-sphinx-theme": "*",
-        "unittest": "*"
+        "unittest": "*",
+        "mpremote": "*",
+        "click": "*"
     },
     "packages": {},
     "config": {

@@ -26,12 +26,14 @@ class Apply(APipeline):
 class Filter(APipeline):
     """Pipeline that filters values."""
 
-    def __init__(self, filter, source=None):
+    def __init__(self, filter, args=(), kwargs={}, source=None):
         super().__init__(source)
         self.filter = filter
+        self.args = args
+        self.kwargs = kwargs
 
     async def process(self, value):
-        if await self.filter(value):
+        if await self.filter(value, *self.args, **self.kwargs):
             return value
         else:
             return None
@@ -72,7 +74,6 @@ class DedupFlow(APipelineFlow):
             raise StopAsyncIteration()
 
 
-
 class Dedup(APipeline):
     """Pipeline that ignores repeated values."""
 
@@ -88,7 +89,7 @@ class EWMA(APipeline):
         self.value = None
 
     async def __call__(self, value=None):
-        if value is None:
+        if value is None and self.source is not None:
             value = await self.source()
         if self.value is None:
             self.value = value

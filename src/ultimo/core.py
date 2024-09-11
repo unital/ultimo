@@ -72,6 +72,10 @@ class ASink:
             except uasyncio.CancelledError:
                 return
 
+    def create_task(self) -> uasyncio.Task:
+        """Create a task that consumes the source."""
+        return uasyncio.create_task(self.run())
+
     def __ror__(self, other):
         if isinstance(other, ASource):
             self.source = other
@@ -97,7 +101,7 @@ class EventFlow(AFlow):
 
     async def __anext__(self):
         await self.source.event.wait()
-        return super().__anext__()
+        return await super().__anext__()
 
 
 class EventSource(ASource):
@@ -117,8 +121,10 @@ class EventSource(ASource):
         self.event.clear()
 
 
-class ThreadSafeSource(EventSource):
+class ThreadSafeSource(ASource):
     """Base class for interrupt-driven sources."""
+
+    flow = EventFlow
 
     #: An uasyncio ThreadSafeFlag which is set to wake the iterators.
     event: uasyncio.ThreadSafeFlag
@@ -131,6 +137,8 @@ class APipelineFlow(AFlow):
     """Base class for iterators over pipeline sources."""
 
     source: "APipeline"
+
+    flow: AFlow
 
     def __init__(self, source: "APipeline"):
         super().__init__(source)

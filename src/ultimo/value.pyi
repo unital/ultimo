@@ -9,7 +9,7 @@ import utime
 from typing import Any, Callable, SupportsFloat
 
 
-from .core import EventSource, asink, Returned
+from .core import Consumer, EventSource, ASource, Returned
 from .interpolate import linear
 
 
@@ -30,9 +30,10 @@ class Value(EventSource[Returned]):
 
     async def __call__(self, value: Returned | None = None) -> Returned: ...
 
-    @asink
-    async def sink(self, value: Returned | None = None) -> None:
+    def sink(self, source: ASource[Returned]) -> Consumer[Returned]:
         """Sink creator that updates the value from another source."""
+
+    def __ror__(self, other: ASource[Returned]) -> Consumer[Returned]: ...
 
 
 class EasedValue(Value[Returned]):
