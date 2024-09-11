@@ -2,75 +2,102 @@
 Examples
 ========
 
+The following examples show some of the ways Ultimo can be used.
 
-Putting it all Together
-=======================
+..  include:: ../examples/echo.py
+    :start-after: """
+    :end-before: """
 
-..  warning::
+..  literalinclude:: ../examples/echo.py
+    :start-at: import
+    :language: python
 
-    This is currently hypothetical.  API may change.
+Download :download:`echo.py <../examples/echo.py>`
 
-Let's consider a system where we have:
+..  include:: ../examples/temperature.py
+    :start-after: """
+    :end-before: """
 
-- an lcd with an led backlight which use I2C
-- a push button on GPIO pin 0
-- a potentiometer on pin 19
+..  literalinclude:: ../examples/temperature.py
+    :start-at: import
+    :language: python
 
-and we want the behaviour:
+Download :download:`temperature.py <../examples/temperature.py>`
 
-- the push button turns the led and lcd on and off
-- the potentiometer controls the brightness of the led
-- the lcd displays the current time in minutes
+..  include:: ../examples/polled_button.py
+    :start-after: """
+    :end-before: """
 
-The potentiometer needs its raw value converted to a range 0-255 for the led,
-and we only want to change the value when the value actually changes, so we
-use::
+..  literalinclude:: ../examples/polled_button.py
+    :start-at: import
+    :language: python
 
-    @pipe
-    def brightness(raw_value):
-        return raw_value >> 8
+Download :download:`polled_button.py <../examples/polled_button.py>`
 
-    brightness_task = Task(connect(led.brightness, dedup(brightness(adc(19)))))
+..  include:: ../examples/clock.py
+    :start-after: """
+    :end-before: """
 
-The time for the lcd needs formatting and deduplication::
+..  literalinclude:: ../examples/clock.py
+    :start-at: import
+    :language: python
 
-    @pipe
-    def hours_minutes(dt):
-        return dt[4:6]
+Download :download:`clock.py <../examples/clock.py>`
 
-    @pipe
-    def format(t):
-        return b'{0:02}:{1:02}'.format(*t)
+..  include:: ../examples/potentiometer.py
+    :start-after: """
+    :end-before: """
 
-    @sink
-    def display_bytes(value):
-        lcd.clear()
-        lcd.write_ddram(value)
+..  literalinclude:: ../examples/potentiometer.py
+    :start-at: import
+    :language: python
 
-    time_task = Task(display_bytes(format(dedup(hours_minutes(poll_rtc(1.0))))
+Download :download:`potentiometer.py <../examples/potentiometer.py>`
 
-The button is a simple GPIO, but is noisy and needs de-bouncing, so we use
-an interrupt::
+..  include:: ../examples/motion_interrupt.py
+    :start-after: """
+    :end-before: """
 
-    async def on_off(button):
-        state = False
-        async for _ in button:
-            state = not state
-            if state:
-                brightness_task = create_task(connect(led.brightness, dedup(brightness(adc(19)))))
-                time_task = create_task(display_bytes(format(dedup(hours_minutes(poll_rtc(1.0))))
-            else:
-                brightness_task.cancel()
-                time_task.cancel()
+..  literalinclude:: ../examples/motion_interrupt.py
+    :start-at: import
+    :language: python
 
-    async def main():
-        button = debounce(button(pin))
-        task = Task(on_off(button))
-        await gather(task)
+Download :download:`motion_interrupt.py <../examples/motion_interrupt.py>`
 
-    if __name__ == '__main__':
-        run(main())
+..  include:: ../examples/lcd_clock.py
+    :start-after: """
+    :end-before: """
 
-Other Examples
-==============
+..  literalinclude:: ../examples/lcd_clock.py
+    :start-at: import
+    :language: python
 
+Download :download:`lcd_clock.py <../examples/lcd_clock.py>`
+
+Download :download:`devices/lcd1602.py <../examples/devices/lcd1602.py>`
+
+Download :download:`devices/aip31068l.py <../examples/devices/aip31068l.py>`
+
+Download :download:`devices/pca9633.py <../examples/devices/pca9633.py>`
+
+Download :download:`devices/hd44780.py <../examples/devices/hd44780.py>`
+
+..  include:: ../examples/lcd_input.py
+    :start-after: """
+    :end-before: """
+
+..  literalinclude:: ../examples/lcd_input.py
+    :start-at: import
+    :language: python
+
+Download :download:`lcd_input.py <../examples/lcd_input.py>`
+
+Download :download:`devices/hd44780_text_device.py <../examples/devices/hd44780_text_device.py>`
+
+Download :download:`devices/lcd1602.py <../examples/devices/lcd1602.py>`
+
+Download :download:`devices/aip31068l.py <../examples/devices/aip31068l.py>`
+
+Download :download:`devices/pca9633.py <../examples/devices/pca9633.py>`
+
+Download :download:`devices/hd44780.py <../examples/devices/hd44780.py>`

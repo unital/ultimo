@@ -8,7 +8,7 @@ from machine import I2C
 
 from .hd44780 import HD44780, FONT_5x8_DOTS
 
-DEFAULT_ADDRESS = (0x7c>>1)
+DEFAULT_ADDRESS = 0x7C >> 1
 
 
 class AiP31068L(HD44780):
@@ -18,7 +18,14 @@ class AiP31068L(HD44780):
 
     address: int
 
-    def __init__(self, i2c: I2C, address: int = DEFAULT_ADDRESS, size: tuple[int, int] = (16, 2), font: int = FONT_5x8_DOTS, track: bool = True):
+    def __init__(
+        self,
+        i2c: I2C,
+        address: int = DEFAULT_ADDRESS,
+        size: tuple[int, int] = (16, 2),
+        font: int = FONT_5x8_DOTS,
+        track: bool = True,
+    ):
         self.i2c = i2c
         self.address = address
         super().__init__(size, font, track)

@@ -8,4 +8,5 @@ API
 
     ultimo
     ultimo_machine
+    ultimo_display
 

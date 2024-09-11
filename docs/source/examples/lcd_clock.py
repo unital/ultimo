@@ -1,22 +1,30 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
 """
-16x2 LCD Clock Example
-----------------------
+16x2 LCD Clock
+--------------
 
 This example shows how to poll the real-time clock and how to use a Value
 as a source for multiple pipelines, a custom subclass of ATextDevice, and how
 to write a simple async function that consumes a flow of values.
+
+This example expects I2C to be connected with SDA on pin 4 and SCL on pin 5.
+Adjust appropritely for other set-ups.
 """
 
 import uasyncio
 from machine import I2C, Pin
 
-from ultimo.pipelines import apipe, pipe, Dedup
 from ultimo.core import asink
-from ultimo.value import Value, Hold
-from ultimo_machine.time import PollRTC
+from ultimo.pipelines import Dedup, apipe, pipe
+from ultimo.value import Hold, Value
 from ultimo_display.text_device import ATextDevice
+from ultimo_machine.time import PollRTC
 
 from devices.lcd1602 import LCD1602_RGB
+
 
 class HD44780TextDevice(ATextDevice):
     """Text devive for HD44780-style lcds."""
@@ -32,7 +40,7 @@ class HD44780TextDevice(ATextDevice):
         self.device.write_ddram(position, text.encode())
 
     async def erase(self, length: int, position: tuple[int, int]):
-        await self.display_at(" "*length, position)
+        await self.display_at(" " * length, position)
 
     async def set_cursor(self, position: tuple[int, int]):
         # doesn't handle 4-line displays
@@ -52,7 +60,9 @@ async def get_formatted(dt: tuple[int, ...], index: int):
     return f"{dt[index]:02d}"
 
 
-async def blink_colons(clock: Value, text_device: ATextDevice, positions: list[tuple[int, int]]):
+async def blink_colons(
+    clock: Value, text_device: ATextDevice, positions: list[tuple[int, int]]
+):
     async for value in clock:
         for position in positions:
             await text_device.display_at(":", position)
@@ -73,10 +83,14 @@ async def main(i2c):
 
     rtc = PollRTC()
     clock = Value(await rtc())
-    update_clock = (rtc | clock)
-    display_hours = (clock | get_formatted(4) | Dedup() | text_device.display_text(0, 0))
-    display_minutes = (clock | get_formatted(5) | Dedup() | text_device.display_text(0, 3))
-    display_seconds = (clock | get_formatted(6) | Dedup() | text_device.display_text(0, 6))
+    update_clock = rtc | clock
+    display_hours = clock | get_formatted(4) | Dedup() | text_device.display_text(0, 0)
+    display_minutes = (
+        clock | get_formatted(5) | Dedup() | text_device.display_text(0, 3)
+    )
+    display_seconds = (
+        clock | get_formatted(6) | Dedup() | text_device.display_text(0, 6)
+    )
     blink_display = blink_colons(clock, text_device, [(2, 0), (5, 0)])
 
     # run forever
@@ -89,7 +103,7 @@ async def main(i2c):
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     SDA = Pin(4)
     SCL = Pin(5)
 

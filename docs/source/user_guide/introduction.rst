@@ -45,6 +45,36 @@ example, the clock only needs to poll the time occasionally (since it is only
 displaying hours and minutes) while the potentiometer needs to be checked
 frequently if it is to be responsive to user interactions.
 
+What Ultimo Is
+--------------
+
+The :py:mod:`ultimo` library provides classes that simplify this paradigm.
+There are classes which provide asynchronous iterators based around polling,
+interrupts and asynchronous streams, as well as intermediate transforming
+iterators that handle common tasks such as smoothing and de-duplication.
+The basic Ultimo library is hardware-independent and should work on any
+recent micropython version.
+
+The :py:mod:`ultimo_machine` library provides hardware support wrapping
+the micropython :py:mod:`machine` module and other standard library
+modiles.  It provides sources for simple polling of and interrupts from GPIO
+pins, polled ADC, polled RTC and interrupt-based timer sources.
+
+The :py:mod:`ultimo_display` library provides a framework for text-based
+display of data, including an implementation that renders to a framebuffer.
+
+Ultimo also provides convenience decorators and a syntax for building pipelines
+from basic building blocks using the bitwise-or (or "pipe" operator)::
+
+    @pipe
+    def denoise(value):
+        """Denoise uint16 values to 6 significant bits."""
+        return value & 0xfc00
+
+    async def main():
+        led_brightness = PollADC(26, 0.1) | denoise() | Dedup() | PWMSink(25)
+        await asyncio.gather(led_brightness.create_task())
+
 What Ultimo Isn't
 -----------------
 
@@ -55,3 +85,10 @@ the frequency or latency with which a coroutine will be called.
 The design goal of Ultimo was to make it easier to support user interactions,
 so it may not be a good fit for applications which are purely for hardware
 automation.
+
+Why "Ultimo"?
+-------------
+
+Ultimo is a suburb of my hometown of Sydney which has historically been a hub
+for science and technology: it is home to the University of Technology Sydney
+and the Powerhouse Museum, and is where many Sydney start-ups are located.

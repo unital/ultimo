@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""Abstract base-class for text-based displays."""
+
 from ultimo.core import Consumer
 
 class ATextDevice:

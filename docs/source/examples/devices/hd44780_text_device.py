@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""ATextDevice implementation for HD44780 LCD displays"""
+
 from ultimo_display.text_device import ATextDevice
 
 
@@ -15,7 +21,7 @@ class HD44780TextDevice(ATextDevice):
         self.device.write_ddram(position, text.encode())
 
     async def erase(self, length: int, position: tuple[int, int]):
-        await self.display_at(" "*length, position)
+        await self.display_at(" " * length, position)
 
     async def set_cursor(self, position: tuple[int, int]):
         # doesn't handle 4-line displays

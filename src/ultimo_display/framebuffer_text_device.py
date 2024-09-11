@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""Concrete implementation of a text-based displays in a framebuffer."""
 
 from framebuf import FrameBuffer
 
@@ -18,7 +23,7 @@ class FrameBufferTextDevice(ATextDevice):
 
     async def display_at(self, text: str, position: tuple[int, int]):
         x, y = position
-        self.framebuf.text(text, x*8, y*8)
+        self.framebuf.text(text, x*8, y*8, self.foreground)
 
     async def erase(self, length: int, position: tuple[int, int]):
         x, y = position

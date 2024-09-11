@@ -1,6 +1,12 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""Driver for PCA9633-based I2C LED controllers."""
+
 from machine import I2C
 
-DEFAULT_ADDRESS = (0xc0>>1)
+DEFAULT_ADDRESS = 0xC0 >> 1
 
 MODE1 = 0x00
 MODE2 = 0x01
@@ -66,7 +72,9 @@ class PCA9633:
         return self.write_register(MODE1, state, AUTOINCREMENT_ENABLED)
 
     def write_leds(self, leds: bytes):
-        return self.write_register(PWM0, leds, AUTOINCREMENT_ENABLED | AUTOINCREMENT_BIT0)
+        return self.write_register(
+            PWM0, leds, AUTOINCREMENT_ENABLED | AUTOINCREMENT_BIT0
+        )
 
     @property
     def sleep(self):
@@ -76,10 +84,10 @@ class PCA9633:
     def sleep(self, sleep: bool = True):
         mode1 = ord(self.read_register(MODE1))
         if sleep:
-            data = (mode1 | SLEEP_ON)
+            data = mode1 | SLEEP_ON
         else:
-            data = (mode1 & ~SLEEP_ON)
-        self.write_register(MODE1, data.to_bytes(1, 'little'))
+            data = mode1 & ~SLEEP_ON
+        self.write_register(MODE1, data.to_bytes(1, "little"))
 
     def blink(self, period: float = 1.0, ratio: float = 0.5):
         if period == 0:

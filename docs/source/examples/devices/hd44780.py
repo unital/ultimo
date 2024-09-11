@@ -207,7 +207,12 @@ class HD44780:
 
     _state: HD44780_State | None = None
 
-    def __init__(self, size: tuple[int, int] = (16, 2), font: int = FONT_5x8_DOTS, track: bool = True):
+    def __init__(
+        self,
+        size: tuple[int, int] = (16, 2),
+        font: int = FONT_5x8_DOTS,
+        track: bool = True,
+    ):
         self._size = size
         self._font = font
         self._track = track
@@ -234,14 +239,21 @@ class HD44780:
             return
         self.command(ENTRY_MODE_SET, entry_mode)
 
-    def display_control(self, display: int = DISPLAY_OFF, cursor: int = CURSOR_OFF, blink: int = BLINK_OFF):
+    def display_control(
+        self,
+        display: int = DISPLAY_OFF,
+        cursor: int = CURSOR_OFF,
+        blink: int = BLINK_OFF,
+    ):
         display_state = display | cursor | blink
         if self._state and display_state == self._state.display_state:
             # nothing to do
             return
         self.command(DISPLAY_CONTROL, display_state)
 
-    def cursor_shift(self, cursor_shift: int = CURSOR_MOVE, direction: int = MOVE_RIGHT):
+    def cursor_shift(
+        self, cursor_shift: int = CURSOR_MOVE, direction: int = MOVE_RIGHT
+    ):
         cursor_shift_state = cursor_shift | direction
         self.command(CURSOR_SHIFT, cursor_shift_state)
 

@@ -1,12 +1,21 @@
-"""Motion Sensor Interrupt Example
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""
+Motion Sensor Interrupt
+-----------------------
 
 This example shows how to use an IRQ to feed a ThreadSafeSource source, the
 Hold source, how to connect to a value's sink,  and using the consumer
 decorator.
+
+This example expects an HC-SR501 or similar motion sensor connected with to
+pin 22.  Adjust appropritely for other set-ups.
 """
 
 import uasyncio
-from machine import Pin, RTC
+from machine import RTC, Pin
 
 from ultimo.core import sink
 from ultimo.value import Hold
@@ -30,6 +39,6 @@ async def main(pin_id):
         await uasyncio.gather(update_task, report_task)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # run forever
     uasyncio.run(main(22))

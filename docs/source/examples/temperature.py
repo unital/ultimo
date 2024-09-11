@@ -1,4 +1,10 @@
-""" Temperature Example
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
+"""
+Temperature
+-----------
 
 This example shows how to smooth data from a source to produce a
 clean sequence of values.  This was written for the Raspberry Pi
@@ -11,7 +17,7 @@ stream writer.
 import uasyncio
 from machine import ADC
 
-from ultimo.pipelines import pipe, EWMA
+from ultimo.pipelines import EWMA, pipe
 from ultimo.stream import AWrite
 from ultimo_machine.gpio import PollADC
 
@@ -19,7 +25,7 @@ from ultimo_machine.gpio import PollADC
 @pipe
 def u16_to_celcius(value: int) -> float:
     """Convert raw uint16 values to temperatures."""
-    return 27 - (3.3 * value / 0xffff - 0.706) / 0.001721
+    return 27 - (3.3 * value / 0xFFFF - 0.706) / 0.001721
 
 
 @pipe
@@ -35,7 +41,6 @@ async def main():
     await uasyncio.gather(write_temperature.create_task())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # run forever
     uasyncio.run(main())
-

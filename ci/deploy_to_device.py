@@ -7,8 +7,8 @@ import click
 @click.command()
 def deploy():
     try:
-        deploy_py_files(Path("examples"), ":")
-        deploy_py_files(Path("examples/devices"), ":/devices")
+        deploy_py_files(Path("docs/source/examples"), ":")
+        deploy_py_files(Path("docs/source/examples/devices"), ":/devices")
         deploy_py_files(Path("src/ultimo"), ":/lib/ultimo")
         deploy_py_files(Path("src/ultimo_machine"), ":/lib/ultimo_machine")
         deploy_py_files(Path("src/ultimo_display"), ":/lib/ultimo_display")

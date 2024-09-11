@@ -1,9 +1,18 @@
-from machine import I2C
-from struct import pack
-import utime
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
 
-from .pca9633 import PCA9633, DEFAULT_ADDRESS as LED_ADDRESS
-from .aip31068l import AiP31068L, DEFAULT_ADDRESS as LCD_ADDRESS
+"""Driver for Waveshare LCD1602 RGB and similar LCDs with LED backlight."""
+
+from struct import pack
+
+import utime
+from machine import I2C
+
+from .aip31068l import DEFAULT_ADDRESS as LCD_ADDRESS
+from .aip31068l import AiP31068L
+from .pca9633 import DEFAULT_ADDRESS as LED_ADDRESS
+from .pca9633 import PCA9633
 
 
 class LCD1602_RGB:
@@ -38,7 +47,7 @@ class LCD1602_RGB:
             self.lcd.clear_cgram()
 
         # blink mode, all off, 100% blink duty cycle, all grouped
-        self.led.write_state(b'\x80\x20\x00\x00\x00\x00\xff\x00\xff')
+        self.led.write_state(b"\x80\x20\x00\x00\x00\x00\xff\x00\xff")
 
     async def ainit(self, clear_cgram=False):
         import uasyncio
@@ -63,13 +72,11 @@ class LCD1602_RGB:
             self.lcd.clear_cgram()
 
         # blink mode, all off, 100% blink duty cycle, all grouped
-        self.led.write_state(b'\x80\x20\x00\x00\x00\x00\xff\x00\xff')
+        self.led.write_state(b"\x80\x20\x00\x00\x00\x00\xff\x00\xff")
 
     def set_rgb(self, r: int, g: int, b: int):
         leds = pack("BBB", b, g, r)
         self.led.write_leds(leds)
 
     def led_white(self):
-        self.set_rgb(0xff, 0xff, 0xff)
-
-
+        self.set_rgb(0xFF, 0xFF, 0xFF)
