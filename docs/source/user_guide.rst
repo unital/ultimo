@@ -7,6 +7,8 @@ Ultimo User Guide
 Ultimo is an interface framework for micropython built around asynchronous
 iterators.
 
+This is the user-guide for Ultimo.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

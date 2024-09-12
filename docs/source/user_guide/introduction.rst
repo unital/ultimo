@@ -4,9 +4,17 @@ Introduction
 
 .. currentmodule:: ultimo
 
-The basic idea of the library is to be able to implement the logic of a
-micropython application around a collection of asyncio Tasks that consume
-asynchronous iterators.
+Ultimo allows you to implement the logic of a micropython application
+around a collection of asyncio Tasks that consume asynchronous iterators.
+
+This is compared to the usual synchronous approach of having an infinite loop
+that mixes together the logic for polling of the ADC and clock.
+
+In addition to the code being simpler, this permits updates to be generated
+and handled at different rates depending on the needs of the interaction.  For
+example, the clock only needs to poll the time occasionally (since it is only
+displaying hours and minutes) while the potentiometer needs to be checked
+frequently if it is to be responsive to user interactions.
 
 For example, to make a potentiometer control the duty cycle of an RGB LED
 you might do something like::
@@ -36,15 +44,6 @@ a ``main`` function::
     if __name__ == "__main__":
         asyncio.run(main())
 
-This is compared to the usual synchronous approach of having an infinite loop
-that mixes together the logic for polling of the ADC and clock.
-
-In addition to the code being simpler, this permits updates to be generated
-and handled at different rates depending on the needs of the interaction.  For
-example, the clock only needs to poll the time occasionally (since it is only
-displaying hours and minutes) while the potentiometer needs to be checked
-frequently if it is to be responsive to user interactions.
-
 What Ultimo Is
 --------------
 
@@ -57,7 +56,7 @@ recent micropython version.
 
 The :py:mod:`ultimo_machine` library provides hardware support wrapping
 the micropython :py:mod:`machine` module and other standard library
-modiles.  It provides sources for simple polling of and interrupts from GPIO
+modules.  It provides sources for simple polling of and interrupts from GPIO
 pins, polled ADC, polled RTC and interrupt-based timer sources.
 
 The :py:mod:`ultimo_display` library provides a framework for text-based
@@ -79,12 +78,12 @@ What Ultimo Isn't
 -----------------
 
 Ultimo isn't intended for strongly constrained real-time applications, since
-:py:mod:`asyncio` is cooperative multitasking and gives no guarantees about
-the frequency or latency with which a coroutine will be called.
+:py:mod:`asyncio` provides cooperative multitasking and gives no guarantees
+about the frequency or latency with which a coroutine will be called.
 
 The design goal of Ultimo was to make it easier to support user interactions,
-so it may not be a good fit for applications which are purely for hardware
-automation.
+so it may not be a good fit for applications which are purely for precision
+hardware automation.
 
 Why "Ultimo"?
 -------------
