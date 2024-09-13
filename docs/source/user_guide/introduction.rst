@@ -6,15 +6,15 @@ Introduction
 
 Ultimo allows you to implement the logic of a micropython application
 around a collection of asyncio Tasks that consume asynchronous iterators.
+This is compared to the usual synchronous approach of having a single main
+loop that mixes together the logic for all the different activities that your
+application.
 
-This is compared to the usual synchronous approach of having an infinite loop
-that mixes together the logic for polling of the ADC and clock.
-
-In addition to the code being simpler, this permits updates to be generated
-and handled at different rates depending on the needs of the interaction.  For
-example, the clock only needs to poll the time occasionally (since it is only
-displaying hours and minutes) while the potentiometer needs to be checked
-frequently if it is to be responsive to user interactions.
+In addition to the making the code simpler, this permits updates to be
+generated and handled at different rates depending on the needs of the
+activity, so a user interaction, like changing the value of a potentiometer or
+polling a button can happen in milliseconds, while a clock or temperature
+display can be updated much less frequently.
 
 For example, to make a potentiometer control the duty cycle of an RGB LED
 you might do something like::
@@ -71,7 +71,7 @@ from basic building blocks using the bitwise-or (or "pipe" operator)::
         return value & 0xfc00
 
     async def main():
-        led_brightness = PollADC(26, 0.1) | denoise() | Dedup() | PWMSink(25)
+        led_brightness = PollADC(ADC_PIN_ID, 0.1) | denoise() | Dedup() | PWMSink(PWM_PIN_ID)
         await asyncio.gather(led_brightness.create_task())
 
 What Ultimo Isn't
