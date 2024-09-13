@@ -1,0 +1,37 @@
+PWMSink
+=======
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PWMSink
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~PWMSink.create_task
+   
+   
+      ~PWMSink.process
+   
+   
+      ~PWMSink.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PWMSink.source
+   
+   

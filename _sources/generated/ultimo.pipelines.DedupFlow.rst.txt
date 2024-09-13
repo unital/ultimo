@@ -1,0 +1,23 @@
+DedupFlow
+=========
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: DedupFlow
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DedupFlow.source
+      ~DedupFlow.flow
+   
+   

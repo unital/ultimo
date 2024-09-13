@@ -1,0 +1,22 @@
+AFlow
+=====
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: AFlow
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AFlow.source
+   
+   

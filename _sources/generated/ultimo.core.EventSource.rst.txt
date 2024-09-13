@@ -1,0 +1,31 @@
+EventSource
+===========
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: EventSource
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~EventSource.fire
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventSource.event
+   
+   

@@ -1,0 +1,40 @@
+AWrite
+======
+
+.. currentmodule:: ultimo.stream
+
+.. autoclass:: AWrite
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~AWrite.close
+   
+   
+      ~AWrite.create_task
+   
+   
+      ~AWrite.process
+   
+   
+      ~AWrite.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AWrite.source
+   
+   

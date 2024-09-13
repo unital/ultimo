@@ -1,0 +1,37 @@
+Value
+=====
+
+.. currentmodule:: ultimo.value
+
+.. autoclass:: Value
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Value.fire
+   
+   
+      ~Value.sink
+   
+   
+      ~Value.update
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Value.event
+   
+   

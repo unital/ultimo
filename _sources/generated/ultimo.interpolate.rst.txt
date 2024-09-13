@@ -1,0 +1,20 @@
+ultimo.interpolate
+==================
+
+.. automodule:: ultimo.interpolate
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      linear
+   
+
+.. currentmodule:: ultimo.interpolate
+
+Functions
+---------
+
+
+.. autofunction:: linear

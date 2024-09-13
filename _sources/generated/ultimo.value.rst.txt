@@ -1,0 +1,18 @@
+ultimo.value
+============
+
+.. automodule:: ultimo.value
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      EasedValue
+      Hold
+      Value
+   
+
+.. currentmodule:: ultimo.value

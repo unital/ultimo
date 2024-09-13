@@ -1,0 +1,40 @@
+PinSink
+=======
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PinSink
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~PinSink.create_task
+   
+   
+      ~PinSink.init
+   
+   
+      ~PinSink.process
+   
+   
+      ~PinSink.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PinSink.source
+   
+   

@@ -1,0 +1,37 @@
+ASink
+=====
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: ASink
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~ASink.create_task
+   
+   
+      ~ASink.process
+   
+   
+      ~ASink.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ASink.source
+   
+   

@@ -1,0 +1,37 @@
+APipeline
+=========
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: APipeline
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~APipeline.create_task
+   
+   
+      ~APipeline.process
+   
+   
+      ~APipeline.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~APipeline.source
+   
+   

@@ -1,0 +1,22 @@
+EventFlow
+=========
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: EventFlow
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventFlow.source
+   
+   

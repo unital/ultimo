@@ -1,0 +1,31 @@
+PinInterrupt
+============
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PinInterrupt
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~PinInterrupt.close
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PinInterrupt.event
+   
+   

@@ -1,0 +1,19 @@
+ultimo.stream
+=============
+
+.. automodule:: ultimo.stream
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      ARead
+      AReadline
+      AWrite
+      StreamMixin
+   
+
+.. currentmodule:: ultimo.stream

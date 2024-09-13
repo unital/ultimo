@@ -1,0 +1,25 @@
+ARead
+=====
+
+.. currentmodule:: ultimo.stream
+
+.. autoclass:: ARead
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~ARead.close
+   
+   
+   
+
+   
+   
+   

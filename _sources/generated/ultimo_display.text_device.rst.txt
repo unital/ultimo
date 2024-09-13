@@ -1,0 +1,16 @@
+ultimo\_display.text\_device
+============================
+
+.. automodule:: ultimo_display.text_device
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      ATextDevice
+   
+
+.. currentmodule:: ultimo_display.text_device

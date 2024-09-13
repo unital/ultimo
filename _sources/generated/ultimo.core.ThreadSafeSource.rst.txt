@@ -1,0 +1,22 @@
+ThreadSafeSource
+================
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: ThreadSafeSource
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ThreadSafeSource.event
+   
+   

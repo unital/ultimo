@@ -1,0 +1,16 @@
+PollADC
+=======
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PollADC
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   

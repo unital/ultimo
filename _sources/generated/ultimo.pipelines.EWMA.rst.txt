@@ -1,0 +1,37 @@
+EWMA
+====
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: EWMA
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~EWMA.create_task
+   
+   
+      ~EWMA.process
+   
+   
+      ~EWMA.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EWMA.source
+   
+   

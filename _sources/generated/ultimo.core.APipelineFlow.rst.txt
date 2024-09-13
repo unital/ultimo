@@ -1,0 +1,23 @@
+APipelineFlow
+=============
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: APipelineFlow
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~APipelineFlow.source
+      ~APipelineFlow.flow
+   
+   

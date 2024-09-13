@@ -1,0 +1,48 @@
+ultimo.core
+===========
+
+.. automodule:: ultimo.core
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      aconnect
+      aiter
+      anext
+      asink
+      asynchronize
+      connect
+      sink
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      AFlow
+      APipeline
+      APipelineFlow
+      ASink
+      ASource
+      Consumer
+      EventFlow
+      EventSource
+      ThreadSafeSource
+   
+
+.. currentmodule:: ultimo.core
+
+Functions
+---------
+
+
+.. autofunction:: aconnect
+.. autofunction:: aiter
+.. autofunction:: anext
+.. autofunction:: asink
+.. autofunction:: asynchronize
+.. autofunction:: connect
+.. autofunction:: sink

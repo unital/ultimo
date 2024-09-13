@@ -1,0 +1,37 @@
+Debounce
+========
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: Debounce
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Debounce.create_task
+   
+   
+      ~Debounce.process
+   
+   
+      ~Debounce.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Debounce.source
+   
+   

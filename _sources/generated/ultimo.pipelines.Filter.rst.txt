@@ -1,0 +1,37 @@
+Filter
+======
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: Filter
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Filter.create_task
+   
+   
+      ~Filter.process
+   
+   
+      ~Filter.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Filter.source
+   
+   

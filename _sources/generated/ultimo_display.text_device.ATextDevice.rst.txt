@@ -1,0 +1,46 @@
+ATextDevice
+===========
+
+.. currentmodule:: ultimo_display.text_device
+
+.. autoclass:: ATextDevice
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~ATextDevice.clear
+   
+   
+      ~ATextDevice.clear_cursor
+   
+   
+      ~ATextDevice.display_at
+   
+   
+      ~ATextDevice.display_text
+   
+   
+      ~ATextDevice.erase
+   
+   
+      ~ATextDevice.set_cursor
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ATextDevice.size
+   
+   

@@ -1,0 +1,40 @@
+EasedValue
+==========
+
+.. currentmodule:: ultimo.value
+
+.. autoclass:: EasedValue
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~EasedValue.ease
+   
+   
+      ~EasedValue.fire
+   
+   
+      ~EasedValue.sink
+   
+   
+      ~EasedValue.update
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EasedValue.event
+   
+   

@@ -1,0 +1,16 @@
+PollSignal
+==========
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PollSignal
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   

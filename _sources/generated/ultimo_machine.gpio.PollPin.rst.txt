@@ -1,0 +1,25 @@
+PollPin
+=======
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: PollPin
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~PollPin.init
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,37 @@
+Consumer
+========
+
+.. currentmodule:: ultimo.core
+
+.. autoclass:: Consumer
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Consumer.create_task
+   
+   
+      ~Consumer.process
+   
+   
+      ~Consumer.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Consumer.source
+   
+   

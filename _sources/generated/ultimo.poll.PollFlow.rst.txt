@@ -1,0 +1,22 @@
+PollFlow
+========
+
+.. currentmodule:: ultimo.poll
+
+.. autoclass:: PollFlow
+   :members:
+   :inherited-members:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PollFlow.source
+   
+   

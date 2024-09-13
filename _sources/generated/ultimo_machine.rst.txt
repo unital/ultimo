@@ -1,0 +1,16 @@
+﻿ultimo\_machine
+===============
+
+.. automodule:: ultimo_machine
+
+   
+
+.. currentmodule:: ultimo_machine
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   gpio
+   time

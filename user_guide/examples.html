@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Examples &#8212; Ultimo 0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/examples';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API" href="../api.html" />
+    <link rel="prev" title="Customization" href="customization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Ultimo 0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    Ultimo User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    API
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    Ultimo User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    API
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_classes.html">Core Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_classes.html">Machine Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="display_classes.html">Display Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guide.html" class="nav-link">Ultimo User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Examples</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
+<p>The following examples show some of the ways Ultimo can be used.</p>
+<section id="echo-input-to-output">
+<h2>Echo Input to Output<a class="headerlink" href="#echo-input-to-output" title="Link to this heading">#</a></h2>
+<p>This example shows how to use a stream to asynchronously read and write.
+It should work on any device that can connect a serial terminal to
+micropython standard input and output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.stream</span> <span class="kn">import</span> <span class="n">ARead</span><span class="p">,</span> <span class="n">AWrite</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read from standard input and echo to standard output.&quot;&quot;&quot;</span>
+
+    <span class="n">echo</span> <span class="o">=</span> <span class="n">ARead</span><span class="p">()</span> <span class="o">|</span> <span class="n">AWrite</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">echo</span><span class="o">.</span><span class="n">create_task</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/cfbd7d1b316ca77e97fcb725e45e33c8/echo.py"><code class="xref download docutils literal notranslate"><span class="pre">echo.py</span></code></a></p>
+</section>
+<section id="temperature">
+<h2>Temperature<a class="headerlink" href="#temperature" title="Link to this heading">#</a></h2>
+<p>This example shows how to smooth data from a source to produce a
+clean sequence of values.  This was written for the Raspberry Pi
+Pico’s onboard temperature sensor.</p>
+<p>This shows how to use the Poll, EWMA, the pipe decorator, and the
+stream writer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">ADC</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">EWMA</span><span class="p">,</span> <span class="n">pipe</span>
+<span class="kn">from</span> <span class="nn">ultimo.stream</span> <span class="kn">import</span> <span class="n">AWrite</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.gpio</span> <span class="kn">import</span> <span class="n">PollADC</span>
+
+
+<span class="nd">@pipe</span>
+<span class="k">def</span> <span class="nf">u16_to_celcius</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert raw uint16 values to temperatures.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">27</span> <span class="o">-</span> <span class="p">(</span><span class="mf">3.3</span> <span class="o">*</span> <span class="n">value</span> <span class="o">/</span> <span class="mh">0xFFFF</span> <span class="o">-</span> <span class="mf">0.706</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.001721</span>
+
+
+<span class="nd">@pipe</span>
+<span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Format a temperature for output.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°C</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll values from the temperature sensor and print values as they change.&quot;&quot;&quot;</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="n">PollADC</span><span class="p">(</span><span class="n">ADC</span><span class="o">.</span><span class="n">CORE_TEMP</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">u16_to_celcius</span><span class="p">()</span> <span class="o">|</span> <span class="n">EWMA</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">write_temperature</span> <span class="o">=</span> <span class="n">temperature</span> <span class="o">|</span> <span class="nb">format</span><span class="p">()</span> <span class="o">|</span> <span class="n">AWrite</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">write_temperature</span><span class="o">.</span><span class="n">create_task</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/71a310f7597e1a7cca4d9178acd97ebf/temperature.py"><code class="xref download docutils literal notranslate"><span class="pre">temperature.py</span></code></a></p>
+</section>
+<section id="polled-button">
+<h2>Polled Button<a class="headerlink" href="#polled-button" title="Link to this heading">#</a></h2>
+<p>This example shows how to debounce a noisy digital I/O.</p>
+<p>This example expects a button connected pin 19.  Adjust appropritely for other
+set-ups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">connect</span>
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">Debounce</span><span class="p">,</span> <span class="n">Dedup</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.gpio</span> <span class="kn">import</span> <span class="n">PollSignal</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">pin_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll values from a button and send an event when the button is pressed.&quot;&quot;&quot;</span>
+    <span class="n">pin_source</span> <span class="o">=</span> <span class="n">PollSignal</span><span class="p">(</span><span class="n">pin_id</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">pin_source</span> <span class="o">|</span> <span class="n">Debounce</span><span class="p">()</span> <span class="o">|</span> <span class="n">Dedup</span><span class="p">()</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">print</span><span class="p">))</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="mi">19</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/e00f7cafee49c6a99fd39bdd380fd214/polled_button.py"><code class="xref download docutils literal notranslate"><span class="pre">polled_button.py</span></code></a></p>
+</section>
+<section id="simple-clock">
+<h2>Simple Clock<a class="headerlink" href="#simple-clock" title="Link to this heading">#</a></h2>
+<p>This example shows how to poll the real-time clock and how to use a Value
+as a source for multiple pipelines.  Output is to stdout.</p>
+<p>This should work with any hardware that supports <a class="reference external" href="https://docs.micropython.org/en/latest/library/machine.RTC.html#machine.RTC" title="(in MicroPython vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">machine.RTC</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">RTC</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">connect</span>
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">pipe</span>
+<span class="kn">from</span> <span class="nn">ultimo.value</span> <span class="kn">import</span> <span class="n">Value</span>
+<span class="kn">from</span> <span class="nn">ultimo.stream</span> <span class="kn">import</span> <span class="n">AWrite</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.time</span> <span class="kn">import</span> <span class="n">PollRTC</span>
+
+<span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Hour&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Minute&quot;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Second&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nd">@pipe</span>
+<span class="k">def</span> <span class="nf">get_str</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fields</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">dt</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll values from the real-time clock and print values as they change.&quot;&quot;&quot;</span>
+    <span class="n">rtc</span> <span class="o">=</span> <span class="n">PollRTC</span><span class="p">()</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="k">await</span> <span class="n">rtc</span><span class="p">())</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">AWrite</span><span class="p">()</span>
+
+    <span class="n">update_clock</span> <span class="o">=</span> <span class="n">rtc</span> <span class="o">|</span> <span class="n">clock</span>
+
+    <span class="n">display_hour</span> <span class="o">=</span> <span class="n">clock</span> <span class="o">|</span> <span class="n">get_str</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="n">output</span>
+    <span class="n">display_minute</span> <span class="o">=</span> <span class="n">clock</span> <span class="o">|</span> <span class="n">get_str</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="n">output</span>
+    <span class="n">display_second</span> <span class="o">=</span> <span class="n">clock</span> <span class="o">|</span> <span class="n">get_str</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">output</span>
+
+    <span class="c1"># run forever</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="n">update_clock</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_hour</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_minute</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_second</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/226e1b878ac23c86ac904ce27faef97e/clock.py"><code class="xref download docutils literal notranslate"><span class="pre">clock.py</span></code></a></p>
+</section>
+<section id="potentiometer-pwm-led">
+<h2>Potentiometer-PWM LED<a class="headerlink" href="#potentiometer-pwm-led" title="Link to this heading">#</a></h2>
+<p>This example shows how to take a noisy data source and produce a clean sequence
+of values, as well as using that stream to control a pulse-width modulation
+output.  This was written for the Raspberry Pi Pico, which has a fairly noisy
+onboard ADC.</p>
+<p>This example expects a potentiometer connected pin 26, and uses the Raspberry
+Pi Pico on-board LED.  Adjust appropritely for other set-ups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">connect</span>
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">Dedup</span><span class="p">,</span> <span class="n">pipe</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.gpio</span> <span class="kn">import</span> <span class="n">PollADC</span><span class="p">,</span> <span class="n">PWMSink</span>
+
+
+<span class="nd">@pipe</span>
+<span class="k">def</span> <span class="nf">denoise</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Denoise uint16 values to 6 significant bits.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0xFC00</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">potentiometer_pin</span><span class="p">,</span> <span class="n">led_pin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll from a potentiometer, print values and change brightness of LED.&quot;&quot;&quot;</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">PollADC</span><span class="p">(</span><span class="n">potentiometer_pin</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">|</span> <span class="n">denoise</span><span class="p">()</span> <span class="o">|</span> <span class="n">Dedup</span><span class="p">()</span>
+    <span class="n">print_level</span> <span class="o">=</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">print</span><span class="p">))</span>
+    <span class="n">led_brightness</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|</span> <span class="n">PWMSink</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">print_level</span><span class="p">,</span> <span class="n">led_brightness</span><span class="o">.</span><span class="n">create_task</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Raspberry Pi Pico pin numbers</span>
+    <span class="n">ADC_PIN</span> <span class="o">=</span> <span class="mi">26</span>
+    <span class="n">ONBOARD_LED_PIN</span> <span class="o">=</span> <span class="mi">25</span>
+
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">ADC_PIN</span><span class="p">,</span> <span class="n">ONBOARD_LED_PIN</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/d98f16113d594f6d0b38f14abf6c66e0/potentiometer.py"><code class="xref download docutils literal notranslate"><span class="pre">potentiometer.py</span></code></a></p>
+</section>
+<section id="motion-sensor-interrupt">
+<h2>Motion Sensor Interrupt<a class="headerlink" href="#motion-sensor-interrupt" title="Link to this heading">#</a></h2>
+<p>This example shows how to use an IRQ to feed a ThreadSafeSource source, the
+Hold source, how to connect to a value’s sink,  and using the consumer
+decorator.</p>
+<p>This example expects an HC-SR501 or similar motion sensor connected with to
+pin 22.  Adjust appropritely for other set-ups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">RTC</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">sink</span>
+<span class="kn">from</span> <span class="nn">ultimo.value</span> <span class="kn">import</span> <span class="n">Hold</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.gpio</span> <span class="kn">import</span> <span class="n">PinInterrupt</span>
+
+
+<span class="nd">@sink</span>
+<span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">RTC</span><span class="p">()</span><span class="o">.</span><span class="n">datetime</span><span class="p">())</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">pin_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wait for a motion sensor to trigger and print output.&quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">PinInterrupt</span><span class="p">(</span><span class="n">pin_id</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_DOWN</span><span class="p">)</span> <span class="k">as</span> <span class="n">motion_pin</span><span class="p">:</span>
+        <span class="n">activity</span> <span class="o">=</span> <span class="n">Hold</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">update_activity</span> <span class="o">=</span> <span class="n">motion_pin</span> <span class="o">|</span> <span class="n">activity</span>
+        <span class="n">report_activity</span> <span class="o">=</span> <span class="n">activity</span> <span class="o">|</span> <span class="n">report</span><span class="p">()</span>
+
+        <span class="n">update_task</span> <span class="o">=</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">update_activity</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+        <span class="n">report_task</span> <span class="o">=</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">report_activity</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+        <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">update_task</span><span class="p">,</span> <span class="n">report_task</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="mi">22</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/e8df8574ca1ad7008c696337c42b64b4/motion_interrupt.py"><code class="xref download docutils literal notranslate"><span class="pre">motion_interrupt.py</span></code></a></p>
+</section>
+<section id="x2-lcd-clock">
+<h2>16x2 LCD Clock<a class="headerlink" href="#x2-lcd-clock" title="Link to this heading">#</a></h2>
+<p>This example shows how to poll the real-time clock and how to use a Value
+as a source for multiple pipelines, a custom subclass of ATextDevice, and how
+to write a simple async function that consumes a flow of values.</p>
+<p>This example expects I2C to be connected with SDA on pin 4 and SCL on pin 5.
+Adjust appropritely for other set-ups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2C</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">asink</span>
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">Dedup</span><span class="p">,</span> <span class="n">apipe</span><span class="p">,</span> <span class="n">pipe</span>
+<span class="kn">from</span> <span class="nn">ultimo.value</span> <span class="kn">import</span> <span class="n">Hold</span><span class="p">,</span> <span class="n">Value</span>
+<span class="kn">from</span> <span class="nn">ultimo_display.text_device</span> <span class="kn">import</span> <span class="n">ATextDevice</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.time</span> <span class="kn">import</span> <span class="n">PollRTC</span>
+
+<span class="kn">from</span> <span class="nn">devices.lcd1602</span> <span class="kn">import</span> <span class="n">LCD1602_RGB</span>
+
+
+<span class="k">class</span> <span class="nc">HD44780TextDevice</span><span class="p">(</span><span class="n">ATextDevice</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Text devive for HD44780-style lcds.&quot;&quot;&quot;</span>
+
+    <span class="n">size</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">display_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+        <span class="c1"># need proper lookup table for Unicode -&gt; JIS X 0201 Hitachi variant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">write_ddram</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">erase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_at</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">length</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+        <span class="c1"># doesn&#39;t handle 4-line displays</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">cursor_on</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">clear_cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">cursor_off</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">cursor_off</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+
+<span class="nd">@apipe</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_formatted</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dt</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">blink_colons</span><span class="p">(</span>
+    <span class="n">clock</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">text_device</span><span class="p">:</span> <span class="n">ATextDevice</span><span class="p">,</span> <span class="n">positions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+<span class="p">):</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">clock</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">text_device</span><span class="o">.</span><span class="n">display_at</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">text_device</span><span class="o">.</span><span class="n">erase</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">i2c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll values from the real-time clock and print values as they change.&quot;&quot;&quot;</span>
+
+    <span class="n">rgb1602</span> <span class="o">=</span> <span class="n">LCD1602_RGB</span><span class="p">(</span><span class="n">i2c</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">rgb1602</span><span class="o">.</span><span class="n">ainit</span><span class="p">()</span>
+    <span class="n">rgb1602</span><span class="o">.</span><span class="n">led_white</span><span class="p">()</span>
+    <span class="n">rgb1602</span><span class="o">.</span><span class="n">lcd</span><span class="o">.</span><span class="n">display_on</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">text_device</span> <span class="o">=</span> <span class="n">HD44780TextDevice</span><span class="p">(</span><span class="n">rgb1602</span><span class="o">.</span><span class="n">lcd</span><span class="p">)</span>
+
+    <span class="n">rtc</span> <span class="o">=</span> <span class="n">PollRTC</span><span class="p">()</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="k">await</span> <span class="n">rtc</span><span class="p">())</span>
+    <span class="n">update_clock</span> <span class="o">=</span> <span class="n">rtc</span> <span class="o">|</span> <span class="n">clock</span>
+    <span class="n">display_hours</span> <span class="o">=</span> <span class="n">clock</span> <span class="o">|</span> <span class="n">get_formatted</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="n">Dedup</span><span class="p">()</span> <span class="o">|</span> <span class="n">text_device</span><span class="o">.</span><span class="n">display_text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">display_minutes</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">clock</span> <span class="o">|</span> <span class="n">get_formatted</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="n">Dedup</span><span class="p">()</span> <span class="o">|</span> <span class="n">text_device</span><span class="o">.</span><span class="n">display_text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">display_seconds</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">clock</span> <span class="o">|</span> <span class="n">get_formatted</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="n">Dedup</span><span class="p">()</span> <span class="o">|</span> <span class="n">text_device</span><span class="o">.</span><span class="n">display_text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">blink_display</span> <span class="o">=</span> <span class="n">blink_colons</span><span class="p">(</span><span class="n">clock</span><span class="p">,</span> <span class="n">text_device</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+
+    <span class="c1"># run forever</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="n">update_clock</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_hours</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_minutes</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">display_seconds</span><span class="o">.</span><span class="n">create_task</span><span class="p">(),</span>
+        <span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">blink_display</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">SDA</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">SCL</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sda</span><span class="o">=</span><span class="n">SDA</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">SCL</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">400000</span><span class="p">)</span>
+
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">i2c</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/a24a4e89adee6c68c3a175b3f095f84b/lcd_clock.py"><code class="xref download docutils literal notranslate"><span class="pre">lcd_clock.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/affd0aa3320d52751037b251245a36e4/lcd1602.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/lcd1602.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/bc6e7f4622eb7de931a66fb36df87f88/aip31068l.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/aip31068l.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/82e6e450d9129c0509000bba5fca109d/pca9633.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/pca9633.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/81c8c48311ad19b295cd780694f90afc/hd44780.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/hd44780.py</span></code></a></p>
+</section>
+<section id="x2-lcd-python-eval">
+<h2>16x2 LCD Python Eval<a class="headerlink" href="#x2-lcd-python-eval" title="Link to this heading">#</a></h2>
+<p>This example shows how to handle text input from a serial port and display it
+on a 16x2 LCD panel, and implements a simple Python eval-based calculator.
+This uses an async function to handle the state of editing a line, evaluating
+the expression on return, and displaying the result.</p>
+<p>For best results, use a terminal emulator or mpremote, rather than Thonny or
+other line-based terminals.</p>
+<p>This example expects I2C to be connected with SDA on pin 4 and SCL on pin 5.
+Adjust appropritely for other set-ups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uasyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2C</span><span class="p">,</span> <span class="n">Pin</span>
+
+<span class="kn">from</span> <span class="nn">ultimo.core</span> <span class="kn">import</span> <span class="n">asink</span>
+<span class="kn">from</span> <span class="nn">ultimo.pipelines</span> <span class="kn">import</span> <span class="n">Dedup</span><span class="p">,</span> <span class="n">apipe</span><span class="p">,</span> <span class="n">pipe</span>
+<span class="kn">from</span> <span class="nn">ultimo.stream</span> <span class="kn">import</span> <span class="n">ARead</span>
+<span class="kn">from</span> <span class="nn">ultimo.value</span> <span class="kn">import</span> <span class="n">Hold</span><span class="p">,</span> <span class="n">Value</span>
+<span class="kn">from</span> <span class="nn">ultimo_display.text_device</span> <span class="kn">import</span> <span class="n">ATextDevice</span>
+<span class="kn">from</span> <span class="nn">ultimo_machine.time</span> <span class="kn">import</span> <span class="n">PollRTC</span>
+
+<span class="kn">from</span> <span class="nn">devices.hd44780_text_device</span> <span class="kn">import</span> <span class="n">HD44780TextDevice</span>
+<span class="kn">from</span> <span class="nn">devices.lcd1602</span> <span class="kn">import</span> <span class="n">LCD1602_RGB</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">i2c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poll values from the real-time clock and print values as they change.&quot;&quot;&quot;</span>
+
+    <span class="n">rgb1602</span> <span class="o">=</span> <span class="n">LCD1602_RGB</span><span class="p">(</span><span class="n">i2c</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">rgb1602</span><span class="o">.</span><span class="n">ainit</span><span class="p">()</span>
+    <span class="n">rgb1602</span><span class="o">.</span><span class="n">led_white</span><span class="p">()</span>
+    <span class="n">rgb1602</span><span class="o">.</span><span class="n">lcd</span><span class="o">.</span><span class="n">display_on</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">rgb1602</span><span class="o">.</span><span class="n">lcd</span><span class="o">.</span><span class="n">blink_on</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">text_device</span> <span class="o">=</span> <span class="n">HD44780TextDevice</span><span class="p">(</span><span class="n">rgb1602</span><span class="o">.</span><span class="n">lcd</span><span class="p">)</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="n">ARead</span><span class="p">()</span>
+
+    <span class="c1"># run forever</span>
+    <span class="k">await</span> <span class="n">uasyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">uasyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">display_lines</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">text_device</span><span class="p">)))</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">display_line</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display a single line.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cursor</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span>
+    <span class="k">elif</span> <span class="n">cursor</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="mi">16</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="o">-</span><span class="mi">16</span><span class="p">:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">cursor</span> <span class="o">-</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">cursor</span> <span class="o">+</span> <span class="mi">8</span><span class="p">]</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">await</span> <span class="n">display</span><span class="o">.</span><span class="n">display_at</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">text</span><span class="si">:</span><span class="s2">&lt;16s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+    <span class="k">await</span> <span class="n">display</span><span class="o">.</span><span class="n">set_cursor</span><span class="p">((</span><span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_escape</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Very simplistic handler to catch ANSI cursor commands.&quot;&quot;&quot;</span>
+    <span class="n">escape</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="n">escape</span> <span class="o">+=</span> <span class="n">char</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">escape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">escape</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">display_lines</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">display</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display result line and editing line in a display.&quot;&quot;&quot;</span>
+    <span class="n">last_line</span> <span class="o">=</span> <span class="s2">&quot;Python:&quot;</span>
+    <span class="n">current_line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">await</span> <span class="n">display_line</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">last_line</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">display_line</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">current_line</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">last_line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">current_line</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="n">last_line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+            <span class="n">current_line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">await</span> <span class="n">display_line</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">last_line</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x1B</span><span class="p">:</span>
+            <span class="c1"># escape sequence</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;escape&quot;</span><span class="p">)</span>
+            <span class="n">escape</span> <span class="o">=</span> <span class="k">await</span> <span class="n">handle_escape</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">escape</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">escape</span> <span class="o">==</span> <span class="s2">&quot;[D&quot;</span><span class="p">:</span>
+                <span class="c1"># cursor back</span>
+                <span class="k">if</span> <span class="n">cursor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">cursor</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">escape</span> <span class="o">==</span> <span class="s2">&quot;[C&quot;</span><span class="p">:</span>
+                <span class="c1"># cursor forward</span>
+                <span class="k">if</span> <span class="n">cursor</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_line</span><span class="p">):</span>
+                    <span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x7E</span><span class="p">:</span>
+            <span class="c1"># forward delete</span>
+            <span class="k">if</span> <span class="n">cursor</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_line</span><span class="p">):</span>
+                <span class="n">current_line</span> <span class="o">=</span> <span class="n">current_line</span><span class="p">[:</span><span class="n">cursor</span><span class="p">]</span> <span class="o">+</span> <span class="n">current_line</span><span class="p">[</span><span class="n">cursor</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
+        <span class="k">elif</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x7F</span><span class="p">:</span>
+            <span class="c1"># backspace</span>
+            <span class="k">if</span> <span class="n">cursor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">current_line</span> <span class="o">=</span> <span class="n">current_line</span><span class="p">[:</span> <span class="n">cursor</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">current_line</span><span class="p">[</span><span class="n">cursor</span><span class="p">:]</span>
+                <span class="n">cursor</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x08</span><span class="p">:</span>
+            <span class="c1"># tab</span>
+            <span class="n">current_line</span> <span class="o">=</span> <span class="n">current_line</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="mi">4</span>
+            <span class="n">cursor</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">current_line</span> <span class="o">=</span> <span class="n">current_line</span><span class="p">[:</span><span class="n">cursor</span><span class="p">]</span> <span class="o">+</span> <span class="n">char</span> <span class="o">+</span> <span class="n">current_line</span><span class="p">[</span><span class="n">cursor</span><span class="p">:]</span>
+            <span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">await</span> <span class="n">display_line</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">current_line</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">SDA</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">SCL</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sda</span><span class="o">=</span><span class="n">SDA</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">SCL</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">400000</span><span class="p">)</span>
+
+    <span class="c1"># run forever</span>
+    <span class="n">uasyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">i2c</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download <a class="reference download internal" download="" href="../_downloads/fb061a1df2482228d060ebfaabd7fd75/lcd_input.py"><code class="xref download docutils literal notranslate"><span class="pre">lcd_input.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/fcfeed60d78adc5ed6a4326fed908d65/hd44780_text_device.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/hd44780_text_device.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/affd0aa3320d52751037b251245a36e4/lcd1602.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/lcd1602.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/bc6e7f4622eb7de931a66fb36df87f88/aip31068l.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/aip31068l.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/82e6e450d9129c0509000bba5fca109d/pca9633.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/pca9633.py</span></code></a></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/81c8c48311ad19b295cd780694f90afc/hd44780.py"><code class="xref download docutils literal notranslate"><span class="pre">devices/hd44780.py</span></code></a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="customization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Customization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../api.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#echo-input-to-output">Echo Input to Output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature">Temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polled-button">Polled Button</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-clock">Simple Clock</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potentiometer-pwm-led">Potentiometer-PWM LED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-sensor-interrupt">Motion Sensor Interrupt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x2-lcd-clock">16x2 LCD Clock</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x2-lcd-python-eval">16x2 LCD Python Eval</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/examples.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Unital Software.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

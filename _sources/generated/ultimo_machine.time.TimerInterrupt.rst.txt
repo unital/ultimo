@@ -1,0 +1,31 @@
+TimerInterrupt
+==============
+
+.. currentmodule:: ultimo_machine.time
+
+.. autoclass:: TimerInterrupt
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~TimerInterrupt.close
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TimerInterrupt.event
+   
+   

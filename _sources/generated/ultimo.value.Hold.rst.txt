@@ -1,0 +1,40 @@
+Hold
+====
+
+.. currentmodule:: ultimo.value
+
+.. autoclass:: Hold
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Hold.fire
+   
+   
+      ~Hold.hold
+   
+   
+      ~Hold.sink
+   
+   
+      ~Hold.update
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Hold.event
+   
+   

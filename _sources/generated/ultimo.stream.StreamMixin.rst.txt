@@ -1,0 +1,25 @@
+StreamMixin
+===========
+
+.. currentmodule:: ultimo.stream
+
+.. autoclass:: StreamMixin
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~StreamMixin.close
+   
+   
+   
+
+   
+   
+   

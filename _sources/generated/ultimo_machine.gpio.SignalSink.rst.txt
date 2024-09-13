@@ -1,0 +1,37 @@
+SignalSink
+==========
+
+.. currentmodule:: ultimo_machine.gpio
+
+.. autoclass:: SignalSink
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~SignalSink.create_task
+   
+   
+      ~SignalSink.process
+   
+   
+      ~SignalSink.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SignalSink.source
+   
+   

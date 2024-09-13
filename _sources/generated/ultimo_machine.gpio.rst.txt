@@ -1,0 +1,22 @@
+ultimo\_machine.gpio
+====================
+
+.. automodule:: ultimo_machine.gpio
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      PWMSink
+      PinInterrupt
+      PinSink
+      PollADC
+      PollPin
+      PollSignal
+      SignalSink
+   
+
+.. currentmodule:: ultimo_machine.gpio

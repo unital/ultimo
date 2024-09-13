@@ -1,0 +1,39 @@
+ultimo.pipelines
+================
+
+.. automodule:: ultimo.pipelines
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      afilter
+      apipe
+      filter
+      pipe
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :recursive:
+   
+      Apply
+      Debounce
+      Dedup
+      DedupFlow
+      EWMA
+      Filter
+   
+
+.. currentmodule:: ultimo.pipelines
+
+Functions
+---------
+
+
+.. autofunction:: afilter
+.. autofunction:: apipe
+.. autofunction:: filter
+.. autofunction:: pipe

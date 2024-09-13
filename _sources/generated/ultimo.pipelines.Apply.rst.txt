@@ -1,0 +1,37 @@
+Apply
+=====
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: Apply
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Apply.create_task
+   
+   
+      ~Apply.process
+   
+   
+      ~Apply.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Apply.source
+   
+   

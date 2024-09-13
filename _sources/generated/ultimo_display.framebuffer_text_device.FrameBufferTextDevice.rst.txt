@@ -1,0 +1,47 @@
+FrameBufferTextDevice
+=====================
+
+.. currentmodule:: ultimo_display.framebuffer_text_device
+
+.. autoclass:: FrameBufferTextDevice
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~FrameBufferTextDevice.clear
+   
+   
+      ~FrameBufferTextDevice.clear_cursor
+   
+   
+      ~FrameBufferTextDevice.display_at
+   
+   
+      ~FrameBufferTextDevice.display_text
+   
+   
+      ~FrameBufferTextDevice.erase
+   
+   
+      ~FrameBufferTextDevice.set_cursor
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FrameBufferTextDevice.buffer
+      ~FrameBufferTextDevice.size
+   
+   

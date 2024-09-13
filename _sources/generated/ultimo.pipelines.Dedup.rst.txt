@@ -1,0 +1,37 @@
+Dedup
+=====
+
+.. currentmodule:: ultimo.pipelines
+
+.. autoclass:: Dedup
+   :members:
+   :inherited-members:
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~Dedup.create_task
+   
+   
+      ~Dedup.process
+   
+   
+      ~Dedup.run
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Dedup.source
+   
+   
