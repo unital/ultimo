@@ -8,7 +8,7 @@ Ultimo allows you to implement the logic of a micropython application
 around a collection of asyncio Tasks that consume asynchronous iterators.
 This is compared to the usual synchronous approach of having a single main
 loop that mixes together the logic for all the different activities that your
-application.
+application carries out.
 
 In addition to the making the code simpler, this permits updates to be
 generated and handled at different rates depending on the needs of the
