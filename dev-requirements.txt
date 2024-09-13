@@ -3,4 +3,3 @@ micropy-cli
 mpremote
 pydata-sphinx-theme
 sphinx
-unittest
