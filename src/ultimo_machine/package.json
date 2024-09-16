@@ -1,8 +1,8 @@
 {
     "urls": [
-        ["ultimo_machine/__init__.py", "github:unital/ultimo/src/ultimo/__init__.py"],
-        ["ultimo_machine/gpio.py", "github:unital/ultimo/src/ultimo/gpio.py"],
-        ["ultimo_machine/time.py", "github:unital/ultimo/src/ultimo/time.py"]
+        ["ultimo_machine/__init__.py", "github:unital/ultimo/src/ultimo_machine/__init__.py"],
+        ["ultimo_machine/gpio.py", "github:unital/ultimo/src/ultimo_machine/gpio.py"],
+        ["ultimo_machine/time.py", "github:unital/ultimo/src/ultimo_machine/time.py"]
     ],
     "deps": [
         ["github:unital/ultimo/src/ultimo", "main"]
