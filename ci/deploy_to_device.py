@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-present Unital Software <info@unital.dev>
+#
+# SPDX-License-Identifier: MIT
+
 from pathlib import Path
 import subprocess
 
@@ -6,6 +10,7 @@ import click
 
 @click.command()
 def deploy():
+    """Deploy files to a device via mpremote"""
     try:
         deploy_py_files(Path("docs/source/examples"), ":")
         deploy_py_files(Path("docs/source/examples/devices"), ":/devices")
@@ -16,7 +21,6 @@ def deploy():
         print("Error:")
         print(exc.stderr)
         raise
-
 
 def deploy_py_files(path: Path, destination):
     try:

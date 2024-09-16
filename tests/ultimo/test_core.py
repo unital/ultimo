@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 import unittest
-import asyncio
+import uasyncio
 
 from ultimo.core import APipeline, ASource, ASink, asynchronize
 
@@ -13,7 +13,7 @@ class FiniteSource(ASource):
         self.count = count
 
     async def __call__(self):
-        await asyncio.sleep(0.01)
+        await uasyncio.sleep(0.01)
         value = self.count
         self.count -= 1
         if value < 0:
@@ -42,7 +42,7 @@ class TestASource(unittest.TestCase):
     def test_immediate(self):
         source = FiniteSource(1)
 
-        result = asyncio.run(source())
+        result = uasyncio.run(source())
 
         self.assertEqual(result, 1)
 
@@ -55,7 +55,7 @@ class TestASource(unittest.TestCase):
             async for value in source:
                 result.append(value)
 
-        asyncio.run(iterate())
+        uasyncio.run(iterate())
 
         self.assertEqual(result, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
@@ -66,7 +66,7 @@ class TestASink(unittest.TestCase):
         source = FiniteSource(1)
         sink = CollectingSink(source=source)
 
-        asyncio.run(sink())
+        uasyncio.run(sink())
 
         self.assertEqual(sink.results, [1])
 
@@ -74,7 +74,7 @@ class TestASink(unittest.TestCase):
         source = FiniteSource(10)
         sink = CollectingSink(source=source)
 
-        asyncio.run(sink.run())
+        uasyncio.run(sink.run())
 
         self.assertEqual(sink.results, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
@@ -82,28 +82,28 @@ class TestASink(unittest.TestCase):
         source = FiniteSource(10)
         sink = CollectingSink()
 
-        asyncio.run((source | sink).run())
+        uasyncio.run((source | sink).run())
 
         self.assertEqual(sink.results, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
     def test_no_source_immediate(self):
         sink = CollectingSink()
 
-        asyncio.run(sink(1))
+        uasyncio.run(sink(1))
 
         self.assertEqual(sink.results, [1])
 
     def test_no_source_no_value(self):
         sink = CollectingSink()
 
-        asyncio.run(sink())
+        uasyncio.run(sink())
 
         self.assertEqual(sink.results, [])
 
     def test_no_source_iterate(self):
         sink = CollectingSink()
 
-        asyncio.run(sink.run())
+        uasyncio.run(sink.run())
 
         self.assertEqual(sink.results, [])
 
@@ -115,7 +115,7 @@ class TestAPipeline(unittest.TestCase):
         pipeline = IncrementPipeline(source=source)
         sink = CollectingSink(source=pipeline)
 
-        asyncio.run(sink())
+        uasyncio.run(sink())
 
         self.assertEqual(sink.results, [2])
 
@@ -124,7 +124,7 @@ class TestAPipeline(unittest.TestCase):
         pipeline = IncrementPipeline(source=source)
         sink = CollectingSink(source=pipeline)
 
-        asyncio.run(sink.run())
+        uasyncio.run(sink.run())
 
         self.assertEqual(sink.results, [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
 
@@ -133,7 +133,7 @@ class TestAPipeline(unittest.TestCase):
         pipeline = IncrementPipeline(source=source)
         sink = CollectingSink(source=pipeline)
 
-        asyncio.run((source | pipeline | sink).run())
+        uasyncio.run((source | pipeline | sink).run())
 
         self.assertEqual(sink.results, [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
 
@@ -146,7 +146,7 @@ class TestAsynchronize(unittest.TestCase):
 
         asynchronized = asynchronize(sync_example)
 
-        result = asyncio.run(asynchronized())
+        result = uasyncio.run(asynchronized())
 
         self.assertEqual(result, 1)
 

@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 import unittest
-import asyncio
-import time
+import uasyncio
+import utime
 
 from ultimo.poll import Poll, apoll, poll
 
@@ -16,7 +16,7 @@ class TestPoll(unittest.TestCase):
 
         async def decrement():
             nonlocal count
-            await asyncio.sleep(0.001)
+            await uasyncio.sleep(0.001)
             value = count
             count -= 1
             if value < 0:
@@ -26,7 +26,7 @@ class TestPoll(unittest.TestCase):
 
         source = Poll(decrement, 0.01)
 
-        result = asyncio.run(source())
+        result = uasyncio.run(source())
 
         self.assertEqual(result, 1)
 
@@ -35,7 +35,7 @@ class TestPoll(unittest.TestCase):
 
         async def decrement():
             nonlocal count
-            await asyncio.sleep(0.001)
+            await uasyncio.sleep(0.001)
             value = count
             count -= 1
             if value < 0:
@@ -51,9 +51,9 @@ class TestPoll(unittest.TestCase):
             async for value in source:
                 result.append(value)
 
-        start = time.ticks_ms()
-        asyncio.run(iterate())
-        elapsed = time.ticks_diff(time.ticks_ms(), start)
+        start = utime.ticks_ms()
+        uasyncio.run(iterate())
+        elapsed = utime.ticks_diff(utime.ticks_ms(), start)
 
         self.assertEqual(result, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
         self.assertGreaterEqual(elapsed, 100)
@@ -64,7 +64,7 @@ class TestPoll(unittest.TestCase):
 
         @apoll
         async def decrement():
-            await asyncio.sleep(0.001)
+            await uasyncio.sleep(0.001)
             nonlocal count
             value = count
             count -= 1
@@ -81,9 +81,9 @@ class TestPoll(unittest.TestCase):
             async for value in source:
                 result.append(value)
 
-        start = time.ticks_ms()
-        asyncio.run(iterate())
-        elapsed = time.ticks_diff(time.ticks_ms(), start)
+        start = utime.ticks_ms()
+        uasyncio.run(iterate())
+        elapsed = utime.ticks_diff(utime.ticks_ms(), start)
 
         self.assertEqual(result, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
         self.assertGreaterEqual(elapsed, 100)
@@ -110,9 +110,9 @@ class TestPoll(unittest.TestCase):
             async for value in source:
                 result.append(value)
 
-        start = time.ticks_ms()
-        asyncio.run(iterate())
-        elapsed = time.ticks_diff(time.ticks_ms(), start)
+        start = utime.ticks_ms()
+        uasyncio.run(iterate())
+        elapsed = utime.ticks_diff(utime.ticks_ms(), start)
 
         self.assertEqual(result, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
         self.assertGreaterEqual(elapsed, 100)
