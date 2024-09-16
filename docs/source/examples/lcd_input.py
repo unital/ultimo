@@ -90,9 +90,7 @@ async def display_lines(input, display):
             await display_line(display, last_line, 0, 0)
         elif ord(char) == 0x1B:
             # escape sequence
-            print("escape")
             escape = await handle_escape(input)
-            print(escape)
             if escape == "[D":
                 # cursor back
                 if cursor > 0:

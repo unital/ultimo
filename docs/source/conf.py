@@ -34,7 +34,31 @@ intersphinx_mapping = {
 
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
-
+html_theme_options = {
+    "use_edit_page_button": True,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/unital/ultimo",
+            "icon": "fa-brands fa-github",
+            "type": "fontawesome",
+        },
+        {
+            "name": "Unital",
+            "url": "https://www.unital.dev",
+            "icon": "_static/logo-dark.svg",
+            "type": "local",
+        },
+    ],
+    "icon_links_label": "Quick Links",
+    "default_mode": "dark",
+}
+html_context = {
+    "github_user": "unital",
+    "github_repo": "ultimo",
+    "github_version": "main",
+    "doc_path": "docs",
+}
 
 # -- Options for autodoc -----------------------------------------------------
 import sys
