@@ -18,6 +18,6 @@ jobs:
     - name: Install MicroPython
       uses: BrianPugh/install-micropython@v2
     - name: Install Micropython dependencies
-      run: micropython -m mip unittest
+      run: micropython -m mip install unittest
     - name: Run tests
       run: python -m ci.test
