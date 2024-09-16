@@ -1,0 +1,12 @@
+{
+    "urls": [
+        ["ultimo/__init__.py", "github:unital/ultimo/src/ultimo/__init__.py"],
+        ["ultimo/core.py", "github:unital/ultimo/src/ultimo/core.py"],
+        ["ultimo/interpolate.py", "github:unital/ultimo/src/ultimo/interpolate.py"],
+        ["ultimo/pipelines.py", "github:unital/ultimo/src/ultimo/pipelines.py"],
+        ["ultimo/poll.py", "github:unital/ultimo/src/ultimo/poll.py"],
+        ["ultimo/stream.py", "github:unital/ultimo/src/ultimo/stream.py"],
+        ["ultimo/value.py", "github:unital/ultimo/src/ultimo/value.py"]
+    ],
+    "version": "0.1"
+}
