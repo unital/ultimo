@@ -1,0 +1,11 @@
+{
+    "urls": [
+        ["ultimo_display/__init__.py", "github:unital/ultimo/src/ultimo/__init__.py"],
+        ["ultimo_display/text_device.py", "github:unital/ultimo/src/ultimo/text_device.py"],
+        ["ultimo_display/framebuffer_text_device.py", "github:unital/ultimo/src/ultimo/framebuffer_text_device.py"]
+    ],
+    "deps": [
+        ["github:unital/ultimo/src/ultimo", "main"]
+    ],
+    "version": "0.1"
+}
