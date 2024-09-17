@@ -10,7 +10,29 @@ we would like to add ``mip`` and better stub file support.
 Installation
 ------------
 
-If you want to experiment with Ultimo on a Raspberry Pi Pico, there is a
+Ultimo can be installed from github via :py:mod:`mip`.  For most use-cases
+you will probably want to install :py:mod:`ultimo_machine` which will also
+insatll the core :py:mod:`ultimo` package:
+
+..  code-block:: python-console
+
+    >>> mip.install("github:unital/ultimo/src/ultimo_machine/package.json")
+
+or using :py:mod:`mpremote`:
+
+..  code-block:: console
+
+    mpremote mip install github:unital/ultimo/src/ultimo_machine/package.json
+
+You can separately install :py:mod:`ultimo_display` from
+``github:unital/ultimo/src/ultimo_display/package.json`` and if you just
+want the core :py:mod:`ultimo` without any hardware support, you can install
+``github:unital/ultimo/src/ultimo/package.json``.
+
+Development Installation
+------------------------
+
+To simplify the development work-cycle with actual hardware, there is a
 helper script in the ci directory which will download the files onto the
 device.  You will need an environment with ``mpremote`` and ``click``
 installed.  For example, on a Mac/Linux machine:
@@ -55,7 +77,7 @@ serial console support than Thonny provides, and so may need to use
 Writing Code Using Ultimo
 -------------------------
 
-Althought Ultimo is a micropython library, it provides ``.pyi`` stub files for
+Althought Ultimo is a Micropython library, it provides ``.pyi`` stub files for
 typing support.  If you add the ultimo sources to the paths where tools like
 ``mypy`` and ``pyright`` look for stubs (in particular, ``pip install -e ...``
 will likely work), then you should be able to get type-hints for the code you

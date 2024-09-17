@@ -16,7 +16,9 @@ jobs:
     - name: Install dependencies and local packages
       run: python -m pip install sphinx pydata-sphinx-theme
     - name: Build HTML documentation with Sphinx
-      run: make html
+      run: |
+        make html
+        make html SPHINXOPTS="-W --keep-going -n"
       working-directory: docs
     - uses: actions/upload-artifact@v4
       with:

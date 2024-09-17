@@ -6,9 +6,9 @@
 Ultimo documentation
 ====================
 
-An interface framework for micropython built around asynchronous iterators.
+An interface framework for Micropython built around asynchronous iterators.
 
-Ultimo allows you to implement the logic of a micropython application
+Ultimo allows you to implement the logic of a Micropython application
 around a collection of asyncio Tasks that consume asynchronous iterators.
 This is compared to the usual synchronous approach of having a single main
 loop that mixes together the logic for all the different activities that your
@@ -20,15 +20,15 @@ activity, so a user interaction, like changing the value of a potentiometer or
 polling a button can happen in milliseconds, while a clock or temperature
 display can be updated much less frequently.
 
-The ``ultimo`` library provides classes that simplify this paradigm.
+The :py:mod:`ultimo` library provides classes that simplify this paradigm.
 There are classes which provide asynchronous iterators based around polling,
 interrupts and asynchronous streams, as well as intermediate transforming
 iterators that handle common tasks such as smoothing and de-duplication.
 The basic Ultimo library is hardware-independent and should work on any
-recent micropython version.
+recent Micropython version.
 
-The ``ultimo_machine`` library provides hardware support wrapping
-the micropython ``machine`` module and other standard library
+The :py:mod:`ultimo_machine` library provides hardware support wrapping
+the Micropython :py:mod:`machine`` module and other standard library
 modules.  It provides sources for simple polling of, and interrupts from, GPIO
 pins, polled ADC, polled RTC, and interrupt-based timer sources.
 
