@@ -49,7 +49,7 @@ be created with::
     quick_task = asyncio.create_task(quick_hello())
 
 At this point the tasks have been created, but they need to be run.  This
-is done by running :py:func:`asynicio.gather` with the tasks::
+is done by running :py:func:`asyncio.gather` with the tasks::
 
     asyncio.run(asyncio.gather(slow_task, quick_task))
 
