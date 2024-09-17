@@ -215,13 +215,13 @@ analog-digital converters and the real-time clock. Using these we get::
     from ultimo_machine.time import PollRTC
 
     async def temperature():
-        for value in PollADC(ADC.CORE_TEMP, 10.0):
+        async for value in PollADC(ADC.CORE_TEMP, 10.0):
             t = 27 - (3.3 * value / 0xFFFF - 0.706) / 0.001721
             print(t)
 
     async def clock():
         old_time = None
-        for current_time in PollRTC(0.1):
+        async for current_time in PollRTC(0.1):
             current_time = rtc.datetime()
             if current_time != old_time:
                 print(current_time)
@@ -252,7 +252,7 @@ Micropython function and poll it at a set frequency.  For example::
 
     async def print_noise():
         # print a random value every second
-        for value in noise(1.0):
+        async for value in noise(1.0):
             print(value)
 
 Pipelines
@@ -279,7 +279,7 @@ handles removing consecutive duplicates, so we can re-write the
     from ultimo_machine.time import PollRTC
 
     async def clock():
-        for current_time in Dedup(PollRTC(0.1)):
+        async for current_time in Dedup(PollRTC(0.1)):
             print(current_time)
 
 There is also the :py:class:`~ultimo.pipelines.EWMA` pipeline which smooths
@@ -288,7 +288,7 @@ advantage of being efficient to compute).  With this we can re-write the
 :py:func:`temperature` function as::
 
     async def temperature():
-        for value in EWMA(0.2, PollADC(ADC.CORE_TEMP, 10.0)):
+        async for value in EWMA(0.2, PollADC(ADC.CORE_TEMP, 10.0)):
             t = 27 - (3.3 * value / 0xFFFF - 0.706) / 0.001721
             print(t)
 
@@ -311,7 +311,7 @@ into a custom filter using the :py:func:`~ultimo.pipelines.pipe` decorator::
         return 27 - (3.3 * value / 0xFFFF - 0.706) / 0.001721
 
     async def temperature():
-        for value in to_celcius(EWMA(0.2, PollADC(ADC.CORE_TEMP, 10.0))):
+        async for value in to_celcius(EWMA(0.2, PollADC(ADC.CORE_TEMP, 10.0))):
             t = 27 - (3.3 * value / 0xFFFF - 0.706) / 0.001721
             print(t)
 
@@ -364,7 +364,7 @@ application::
 
     async def led_brightness():
         pwm = PWM(ONBOARD_LED_PIN, freq=1000, duty_u16=0)
-        for value in PollADC(ADC_PIN, 0.1):
+        async for value in PollADC(ADC_PIN, 0.1):
             pwm.duty_u16(value)
 
     async def main():
@@ -384,7 +384,7 @@ which set the pluse-width modulation duty cycle of pin will look very much the s
 
     async def set_pwm(...):
         pwm = PWM(...)
-        for value in ...:
+        async for value in ...:
             pwm.duty_u16(value)
 
 Ultimo provides a class which encapsulates this pattern:
