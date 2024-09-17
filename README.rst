@@ -4,6 +4,14 @@ Ultimo
 Ultimo is an interface framework for micropython built around asynchronous
 iterators.
 
+- `Documentation <https://github.io/unital/ultimo>`_
+- `Tutorial <https://github.io/unital/ultimo/user_guide/tutorial.html>`_
+- `User Guide <https://github.io/unital/ultimo/user_guide.html>`_
+- `Examples <https://github.io/unital/ultimo/user_guide/examples.html>`_
+
+Description
+-----------
+
 Ultimo allows you to implement the logic of a micropython application
 around a collection of asyncio Tasks that consume asynchronous iterators.
 This is compared to the usual synchronous approach of having a single main

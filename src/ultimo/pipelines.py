@@ -99,6 +99,7 @@ class EWMA(APipeline):
 
 
 def apipe(afn):
+    """Decorator that produces a pipeline from an async function."""
 
     def apply_factory(*args, **kwargs):
         return Apply(afn, args, kwargs)
@@ -107,10 +108,12 @@ def apipe(afn):
 
 
 def pipe(fn):
+    """Decorator that produces a pipeline from a function."""
     return apipe(asynchronize(fn))
 
 
 def afilter(afn):
+    """Decorator that produces a filter from an async function."""
 
     def filter_factory(*args, **kwargs):
         return Filter(afn, args, kwargs)
@@ -119,4 +122,5 @@ def afilter(afn):
 
 
 def filter(fn):
+    """Decorator that produces a filter from a function."""
     return afilter(asynchronize(fn))

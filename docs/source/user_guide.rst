@@ -15,6 +15,7 @@ This is the user-guide for Ultimo.
 
    user_guide/introduction.rst
    user_guide/installation.rst
+   user_guide/tutorial.rst
    user_guide/core_classes.rst
    user_guide/machine_classes.rst
    user_guide/display_classes.rst

@@ -51,13 +51,13 @@ html_theme_options = {
         },
     ],
     "icon_links_label": "Quick Links",
-    "default_mode": "dark",
 }
 html_context = {
     "github_user": "unital",
     "github_repo": "ultimo",
     "github_version": "main",
     "doc_path": "docs",
+    "default_mode": "dark",
 }
 
 # -- Options for autodoc -----------------------------------------------------
