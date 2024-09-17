@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Ultimo documentation
-====================
+Ultimo
+======
 
 An interface framework for Micropython built around asynchronous iterators.
 
@@ -28,7 +28,7 @@ The basic Ultimo library is hardware-independent and should work on any
 recent Micropython version.
 
 The :py:mod:`ultimo_machine` library provides hardware support wrapping
-the Micropython :py:mod:`machine`` module and other standard library
+the Micropython :py:mod:`machine` module and other standard library
 modules.  It provides sources for simple polling of, and interrupts from, GPIO
 pins, polled ADC, polled RTC, and interrupt-based timer sources.
 
