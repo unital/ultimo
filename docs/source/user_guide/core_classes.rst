@@ -93,7 +93,7 @@ For example, the following class provides a class for handling IRQs from a
         async def close(self):
             self.pin.irq()
 
-As with all interrupt-based code in micropython, care needs to be taken in
+As with all interrupt-based code in Micropython, care needs to be taken in
 the interrupt handler and the iterator method so that the code is fast,
 robust and reentrant.  Also note that although interrupt handlers may be
 fast, any |EventFlow| instances watching the event will be dispatched by

@@ -77,7 +77,7 @@ serial console support than Thonny provides, and so may need to use
 Writing Code Using Ultimo
 -------------------------
 
-Althought Ultimo is a micropython library, it provides ``.pyi`` stub files for
+Althought Ultimo is a Micropython library, it provides ``.pyi`` stub files for
 typing support.  If you add the ultimo sources to the paths where tools like
 ``mypy`` and ``pyright`` look for stubs (in particular, ``pip install -e ...``
 will likely work), then you should be able to get type-hints for the code you

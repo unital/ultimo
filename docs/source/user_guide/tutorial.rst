@@ -5,7 +5,7 @@ Tutorial
 When writing an application you often want to do multiple things at once.
 In standard Python there are a number of ways of doing this: multiprocessing,
 multithreading, and asyncio (plus other, more specialized systems, such as
-MPI).  In micropython there are fewer choices: multiprocessing and
+MPI).  In Micropython there are fewer choices: multiprocessing and
 multithreading are either not available or are limited, so asyncio is
 commonly used, particularly when precise timing is not an issue.
 
@@ -242,7 +242,7 @@ and from streams such as standard input, files and sockets.
 
 For hardware which is not currently wrapped, Ultimo provides a
 :py:class:`~ultimo.poll.poll` decorator that can be used to wrap a standard
-micropython function and poll it at a set frequency.  For example::
+Micropython function and poll it at a set frequency.  For example::
 
     from ultimo.poll import poll
 

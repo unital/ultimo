@@ -4,7 +4,7 @@ Ultimo User Guide
 
 .. currentmodule:: ultimo
 
-Ultimo is an interface framework for micropython built around asynchronous
+Ultimo is an interface framework for Micropython built around asynchronous
 iterators.
 
 This is the user-guide for Ultimo.
