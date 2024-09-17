@@ -100,7 +100,7 @@ example::
             async yield i
 
 However Micropython doesn't support asynchronous generators as of this writing.
-This lack is a primary motivation for a Ultimo as a library.
+This lack is a primary motivation for Ultimo as a library.
 
 Hardware and Asyncio
 --------------------
@@ -456,11 +456,11 @@ brightness of an LED::
         volume_bar = volume | text_bar() | text_device.display_text(0, 0)
         ...
 
-It's also common for a :py:class:`~ultimo.values.Value` to be set at the end
+It's also common for a :py:class:`~ultimo.value.Value` to be set at the end
 of a pipeline, and for this the value provides a dedicated
-:py:attr:`~ultimo.values.Value.sink`, but also can be used at the end of a
-pipeline.  For example, to control the volume with a potentiometer, you could
-have code which looks like::
+:py:meth:`~ultimo.value.Value.sink` method, but also can be used at the end of
+a pipeline using the pipe syntax.  For example, to control the volume with a
+potentiometer, you could have code which looks like::
 
     async def main():
         # volume is an unsigned 16-bit int
@@ -468,7 +468,7 @@ have code which looks like::
         set_volume = ADCPoll(ADC_PIN, 0.1) | volume
         led_brightness = volume | PWMSink(ONBOARD_LED_PIN, 1000)
 
-In addition to the simple :py:class:`~ultimo.values.Value` class, there are
+In addition to the simple :py:class:`~ultimo.value.Value` class, there are
 additional value subclasses which smooth value changes using easing functions
 and another which holds a value for a set period of time before resetting to
 a default.
