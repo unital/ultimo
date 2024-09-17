@@ -467,6 +467,7 @@ potentiometer, you could have code which looks like::
         volume = Value(0)
         set_volume = ADCPoll(ADC_PIN, 0.1) | volume
         led_brightness = volume | PWMSink(ONBOARD_LED_PIN, 1000)
+        ...
 
 In addition to the simple :py:class:`~ultimo.value.Value` class, there are
 additional value subclasses which smooth value changes using easing functions
