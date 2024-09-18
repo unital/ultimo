@@ -9,7 +9,7 @@ jobs:
   run-tests:
     strategy:
       matrix:
-        version: ["v1.23.0", "v1.24.0-preview"]
+        version: ["v1.19.1", "v1.23.0", "v1.24.0-preview"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
