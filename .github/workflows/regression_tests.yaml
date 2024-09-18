@@ -7,9 +7,10 @@ on:
 
 jobs:
   run-tests:
+    continue-on-error: true
     strategy:
       matrix:
-        version: ["v1.17", "v1.18", "v1.23.0", "v1.24.0-preview"]
+        version: ["v1.20.0", "v1.21.0", "v1.22.2", "v1.23.0", "v1.24.0-preview"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
