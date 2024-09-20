@@ -6,8 +6,11 @@
 
 from ultimo.core import Consumer
 
-class ATextDevice:
 
+class ATextDevice:
+    """ABC for text-based displays."""
+
+    #: The size of the display (width, height)
     size: tuple[int, int]
 
     async def display_at(self, text: str, position: tuple[int, int]):
