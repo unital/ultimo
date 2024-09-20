@@ -12,7 +12,7 @@ import click
 def deploy():
     """Deploy files to a device via mpremote"""
     try:
-        deploy_py_files(Path("docs/source/examples"), ":")
+        deploy_py_files(Path("docs/source/examples"), ":", clear=False)
         deploy_py_files(Path("docs/source/examples/devices"), ":/devices")
         deploy_py_files(Path("src/ultimo"), ":/lib/ultimo")
         deploy_py_files(Path("src/ultimo_machine"), ":/lib/ultimo_machine")
@@ -22,21 +22,24 @@ def deploy():
         print(exc.stderr)
         raise
 
-def deploy_py_files(path: Path, destination):
+def deploy_py_files(path: Path, destination, clear=True):
     try:
         mpremote("mkdir", destination)
     except subprocess.CalledProcessError as exc:
-        # path exists, clear out old files
-        print('remove', listdir(destination))
-        for file in listdir(destination):
-            file = file.decode('utf-8')
-            if not file.endswith('.py'):
-                continue
-            try:
-                mpremote("rm", f"{destination}/{file}")
-            except subprocess.CalledProcessError as exc:
-                # probably a directory
-                pass
+        if clear:
+            # path exists, clear out old files
+            print('remove', destination, '...')
+            for file in listdir(destination):
+                file = file.decode('utf-8')
+                if not file.endswith('.py'):
+                    continue
+                print('remove', f"{destination}/{file}")
+                try:
+                    mpremote("rm", f"{destination}/{file}")
+                except subprocess.CalledProcessError as exc:
+                    # probably a directory
+                    print('failed')
+                    pass
 
     for file in path.glob("*.py"):
         mpremote("cp", str(file), f"{destination}/{file.name}")
@@ -45,8 +48,8 @@ def deploy_py_files(path: Path, destination):
 def listdir(directory):
     listing = mpremote("ls", directory)
     if listing is not None:
-        listing = listing.splitlines(1)[1]
-        return listing.split()[1::2]
+        lines = listing.splitlines()[1:]
+        return [line.split()[1] for line in lines]
     else:
         return []
 
